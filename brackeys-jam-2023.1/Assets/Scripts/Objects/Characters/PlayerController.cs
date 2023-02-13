@@ -14,14 +14,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump Settings")]
     // Jump related
-    // [SerializeField] private float _minJumpHeight = 1.5f;
+    [SerializeField] private float _minJumpHeight = 1.5f;
     [SerializeField] private float _maxJumpHeight = 2f;
     private float minJumpForce;
     private float maxJumpForce;
+    [SerializeField] private float maxHeight = 0;
 
     private bool jumpButtonDown;
     private bool jumpButtonUp;
     private bool isJumping = false;
+    private float jumpTime;
+    private float jumpTimeCounter;
     private bool isGrounded = false;
     [SerializeField] private Transform feetPos;
     [SerializeField] private float checkRadius;
@@ -48,7 +51,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Calculate jump force
-        maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight + 0.25f);
+        _maxJumpHeight += 0.25f;
+        _minJumpHeight += 0.25f;
+
+        maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
+        minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
+
+        // Calculate the jump time
+        jumpTime = (_maxJumpHeight - _minJumpHeight) / minJumpForce;
+        Debug.Log(_maxJumpHeight - _minJumpHeight);
+        Debug.Log(minJumpForce);
+        Debug.Log(jumpTime);
         
         // Load Player sprite depending on initial status
         _sr.sprite = spriteArray[(int)_status];
@@ -58,12 +71,22 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GatherInput();
+        if(isGrounded)
+        {
+            maxHeight = 0;
+        }
+        else
+        {
+            maxHeight = Mathf.Max(maxHeight, transform.position.y);
+        }
+
+        Debug.Log(_rb.velocity.y);
     }
 
     void FixedUpdate()
     {
-        Move();
         Jump();
+        Move();
     }
     #endregion
 
@@ -114,13 +137,16 @@ public class PlayerController : MonoBehaviour
         if(jumpButtonDown && isGrounded)
         {
             isJumping = true;
-            _rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            jumpTimeCounter = jumpTime;
+            // _rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
             // _rb.velocity = Vector2.up * maxJumpForce;
+            _rb.velocity = Vector2.up * minJumpForce;
         }
         if(jumpButtonUp)
         {
             isJumping = false;
         }
+        
     }
 
     private void Move()
@@ -130,7 +156,19 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        
+        if(isJumping)
+        {
+            if(jumpTimeCounter > 0)
+            {
+                _rb.velocity = Vector2.up * minJumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
     }
+        
     #endregion
 }

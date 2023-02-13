@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475635199103130663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ebe6ad19a63fc41aeb9ff355de4a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sr: {fileID: 475635199103130656}
   _rb: {fileID: 475635199103130662}
   _speed: 5
   _maxJumpHeight: 2
@@ -109,6 +110,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _status: 0
+  spriteArray:
+  - {fileID: 994298724, guid: 2d096949d3e778b448ba690dd021d8c8, type: 3}
+  - {fileID: 2115485448, guid: 2d096949d3e778b448ba690dd021d8c8, type: 3}
+  - {fileID: 1079690635, guid: 2d096949d3e778b448ba690dd021d8c8, type: 3}
 --- !u!50 &475635199103130662
 Rigidbody2D:
   serializedVersion: 4

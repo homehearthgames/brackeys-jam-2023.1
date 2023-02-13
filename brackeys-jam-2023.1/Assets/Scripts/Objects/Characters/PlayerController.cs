@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private Rigidbody2D _rb;
 
     [Header("Speed Setting")]
@@ -29,12 +30,15 @@ public class PlayerController : MonoBehaviour
     // Status related
     public enum Status
     {
-        me,
-        soul,
-        dead
+        me = 0,
+        soul = 1,
+        dead = 2
     };
     [Header("Status Settings")]
     [SerializeField] private Status _status;
+
+    [Header("Sprites Related")]
+    [SerializeField] private Sprite[] spriteArray;
 
     #endregion
 
@@ -45,7 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         // Calculate jump force
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight + 0.25f);
-        Debug.Log(maxJumpForce);
+        
+        // Load Player sprite depending on initial status
+        _sr.sprite = spriteArray[(int)_status];
     }
 
     // Update is called once per frame

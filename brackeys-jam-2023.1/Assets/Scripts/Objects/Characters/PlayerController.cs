@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private Rigidbody2D _rb;
+    private Rigidbody2D _rb;
 
     [Header("Speed Setting")]
     [SerializeField] private float _speed = 5f;
@@ -48,7 +48,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Main Methods
-
+    private void Awake() {
+        _rb = GetComponent<Rigidbody2D>();
+    }
     // Start is called before the first frame update
     void Start()
     {

@@ -762,6 +762,10 @@ PrefabInstance:
       propertyPath: _jumpVelocityRatio
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 475635199103130657, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+      propertyPath: spriteArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 495576470, guid: 6da1f2161618a75489c00f7811038904, type: 3}
     - target: {fileID: 475635199103130659, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -809,6 +813,18 @@ PrefabInstance:
     - target: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559885035187215218, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989217283085755763, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059192189663899184, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}

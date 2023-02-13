@@ -103,6 +103,14 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
+        // simple tester code to invert gravity.
+        
+        if(transform.position.y< -0.5){
+            _rb.gravityScale = -3;
+        }else{
+            _rb.gravityScale = 3;
+        }
+        
         // Horizontal moevment
         // Get horizontal input direction and jump input from input manager
         float x;

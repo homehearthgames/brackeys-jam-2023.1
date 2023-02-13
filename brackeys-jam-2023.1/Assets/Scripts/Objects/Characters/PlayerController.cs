@@ -59,9 +59,9 @@ public class PlayerController : MonoBehaviour
 
         // Calculate the jump time
         jumpTime = (_maxJumpHeight - _minJumpHeight) / minJumpForce;
-        Debug.Log(_maxJumpHeight - _minJumpHeight);
-        Debug.Log(minJumpForce);
-        Debug.Log(jumpTime);
+        // Debug.Log(_maxJumpHeight - _minJumpHeight);
+        // Debug.Log(minJumpForce);
+        // Debug.Log(jumpTime);
         
         // Load Player sprite depending on initial status
         _sr.sprite = spriteArray[(int)_status];
@@ -79,8 +79,6 @@ public class PlayerController : MonoBehaviour
         {
             maxHeight = Mathf.Max(maxHeight, transform.position.y);
         }
-
-        Debug.Log(_rb.velocity.y);
     }
 
     void FixedUpdate()

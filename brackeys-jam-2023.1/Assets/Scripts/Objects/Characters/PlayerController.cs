@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private float jumpTime;
     private float jumpTimeCounter;
     private bool isGrounded = false;
+    public bool IsGrounded{get{return isGrounded;}}
     [SerializeField] private Transform feetPos;
     [SerializeField] private float checkRadius;
     [SerializeField] private LayerMask whatIsGround;

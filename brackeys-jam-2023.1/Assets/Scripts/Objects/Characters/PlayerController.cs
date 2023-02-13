@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private SpriteRenderer _haloSprite;
     private Rigidbody2D _rb;
 
     [Header("Speed Setting")]
@@ -32,16 +33,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float checkRadius;
     [SerializeField] private LayerMask whatIsGround;
 
-    // Status related
-    public enum Status
+    // PlayerState related
+    public enum PlayerState
     {
         me = 0,
         soul = 1,
         dead = 2
     };
-    [Header("Status Settings")]
-    [SerializeField] private Status _status;
-
+    [Header("PlayerState Settings")]
+    [SerializeField] private PlayerState _status;
+    public PlayerState Status {
+        get{return _status;}
+        private set {
+            _status = value;
+            OnStatusChanged(_status);
+        }
+        }
     [Header("Sprites Related")]
     [SerializeField] private Sprite[] spriteArray;
 
@@ -67,8 +74,7 @@ public class PlayerController : MonoBehaviour
         // Debug.Log(minJumpForce);
         Debug.Log(jumpTime);
         
-        // Load Player sprite depending on initial status
-        _sr.sprite = spriteArray[(int)_status];
+        this.Status = _status;
     }
 
     // Update is called once per frame
@@ -105,14 +111,14 @@ public class PlayerController : MonoBehaviour
 
         switch (_status)
         {
-            case Status.me:
+            case PlayerState.me:
                 // When the character is Me
                 // Get Axis from "A" and "D"
                 x = Input.GetAxisRaw("Horizontal");
                 jumpButtonDown = Input.GetButtonDown("MeJump");
                 jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
                 break;
-            case Status.soul:
+            case PlayerState.soul:
                 // When the character is Soul
                 // Get Axis from "Left" and "Right"
                 x = Input.GetAxisRaw("Horizontal");
@@ -187,12 +193,25 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (_status!=Status.dead){
+        if (_status!=PlayerState.dead){
         if (other.gameObject.CompareTag("Player"))
         {
             Hold(other.gameObject);
         }
         }
         
+    }
+
+    private void OnStatusChanged(PlayerState newStatus){
+        // Load Player sprite depending on initial status
+        _sr.sprite = spriteArray[(int)_status];
+        switch (_status){
+            case PlayerState.soul:
+                _haloSprite.enabled = true;
+                break;
+            default:
+                _haloSprite.enabled = false;
+                break;
+        }
     }
 }

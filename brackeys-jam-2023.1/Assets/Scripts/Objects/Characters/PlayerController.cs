@@ -114,10 +114,6 @@ public class PlayerController : MonoBehaviour
         if(jumpButtonUp)
         {
             isJumping = false;
-            if(_rb.velocity.y > 0)
-            {
-                _rb.velocity = Vector2.zero;
-            }
         }
     }
 

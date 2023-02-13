@@ -105,6 +105,7 @@ MonoBehaviour:
   _speed: 5
   _minJumpHeight: 1
   _maxJumpHeight: 2
+  _jumpVelocityRatio: 0.75
   maxHeight: 0
   feetPos: {fileID: 475635199659894421}
   checkRadius: 0.3

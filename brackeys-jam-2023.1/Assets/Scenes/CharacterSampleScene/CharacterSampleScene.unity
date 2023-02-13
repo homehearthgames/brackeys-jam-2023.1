@@ -220,7 +220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 475635199103130657, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
       propertyPath: _minJumpHeight
-      value: 1.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 475635199103130657, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+      propertyPath: _jumpVelocityRatio
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 475635199103130659, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
       propertyPath: m_RootOrder

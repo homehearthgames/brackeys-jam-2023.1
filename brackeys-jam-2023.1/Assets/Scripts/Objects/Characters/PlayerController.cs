@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     // Jump related
     [SerializeField] private float _minJumpHeight = 1.5f;
     [SerializeField] private float _maxJumpHeight = 2f;
+    [SerializeField, Range(0.0f, 1.0f)] private float _jumpVelocityRatio = 0.5f; // The ratio of the minjumpforce to maintain
     private float minJumpForce;
     private float maxJumpForce;
     [SerializeField] private float maxHeight = 0;
@@ -51,17 +52,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Calculate jump force
-        _maxJumpHeight += 0.25f;
+        _maxJumpHeight += 0.5f;
         _minJumpHeight += 0.25f;
 
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
         minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
 
         // Calculate the jump time
-        jumpTime = (_maxJumpHeight - _minJumpHeight) / minJumpForce;
+        jumpTime = CharacterManager.CalculateJumpTime(Physics2D.gravity.magnitude * _rb.gravityScale, minJumpForce, _jumpVelocityRatio, _maxJumpHeight, _minJumpHeight);
         // Debug.Log(_maxJumpHeight - _minJumpHeight);
         // Debug.Log(minJumpForce);
-        // Debug.Log(jumpTime);
+        Debug.Log(jumpTime);
         
         // Load Player sprite depending on initial status
         _sr.sprite = spriteArray[(int)_status];
@@ -137,14 +138,14 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             // _rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
             // _rb.velocity = Vector2.up * maxJumpForce;
-            _rb.velocity = Vector2.up * minJumpForce;
+            // _rb.velocity = Vector2.up * minJumpForce;
         }
         if(jumpButtonUp)
         {
             isJumping = false;
         }
-        
     }
 
     private void Move()
@@ -156,16 +157,16 @@ public class PlayerController : MonoBehaviour
     {
         if(isJumping)
         {
-            if(jumpTimeCounter > 0)
+            if(jumpTimeCounter >= 0)
             {
-                _rb.velocity = Vector2.up * minJumpForce;
+                _rb.velocity = Vector2.up * Mathf.Max(_rb.velocity.y, minJumpForce * _jumpVelocityRatio);
                 jumpTimeCounter -= Time.deltaTime;
             }
             else
             {
                 isJumping = false;
             }
-        }
+        }   
     }
         
     #endregion

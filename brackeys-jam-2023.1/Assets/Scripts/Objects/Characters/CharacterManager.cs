@@ -31,4 +31,11 @@ public class CharacterManager : MonoBehaviour
         //sqrt(2gh) = v
         return Mathf.Sqrt(2 * gravityStrength * jumpHeight);
     }
+
+    public static float CalculateJumpTime(float gravityStrength, float jumpVelocity, float velocityRatio, float maxJumpHeight, float minJumpHeight)
+    {
+        // time takes to reach jumpVelocity * velocityRatio + time to take 
+        return (jumpVelocity * (velocityRatio - 1)) / - gravityStrength + 
+               (maxJumpHeight - minJumpHeight) / (jumpVelocity * velocityRatio);
+    }
 }

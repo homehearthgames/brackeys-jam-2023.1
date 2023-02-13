@@ -6,8 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private SpriteRenderer _haloSprite;
-    private Rigidbody2D _rb;
+    [SerializeField] private Rigidbody2D _rb;
 
     [Header("Speed Setting")]
     [SerializeField] private float _speed = 5f;
@@ -33,31 +32,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float checkRadius;
     [SerializeField] private LayerMask whatIsGround;
 
-    // PlayerState related
-    public enum PlayerState
+    // Status related
+    public enum Status
     {
         me = 0,
         soul = 1,
         dead = 2
     };
-    [Header("PlayerState Settings")]
-    [SerializeField] private PlayerState _status;
-    public PlayerState Status {
-        get{return _status;}
-        private set {
-            _status = value;
-            OnStatusChanged(_status);
-        }
-        }
+    [Header("Status Settings")]
+    [SerializeField] private Status _status;
+
     [Header("Sprites Related")]
     [SerializeField] private Sprite[] spriteArray;
 
     #endregion
 
     #region Main Methods
-    private void Awake() {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +65,8 @@ public class PlayerController : MonoBehaviour
         // Debug.Log(minJumpForce);
         Debug.Log(jumpTime);
         
-        this.Status = _status;
+        // Load Player sprite depending on initial status
+        _sr.sprite = spriteArray[(int)_status];
     }
 
     // Update is called once per frame
@@ -103,14 +95,6 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
-        // simple tester code to invert gravity.
-        
-        if(transform.position.y< -0.5){
-            _rb.gravityScale = -3;
-        }else{
-            _rb.gravityScale = 3;
-        }
-        
         // Horizontal moevment
         // Get horizontal input direction and jump input from input manager
         float x;
@@ -119,14 +103,14 @@ public class PlayerController : MonoBehaviour
 
         switch (_status)
         {
-            case PlayerState.me:
+            case Status.me:
                 // When the character is Me
                 // Get Axis from "A" and "D"
                 x = Input.GetAxisRaw("Horizontal");
                 jumpButtonDown = Input.GetButtonDown("MeJump");
                 jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
                 break;
-            case PlayerState.soul:
+            case Status.soul:
                 // When the character is Soul
                 // Get Axis from "Left" and "Right"
                 x = Input.GetAxisRaw("Horizontal");
@@ -185,41 +169,6 @@ public class PlayerController : MonoBehaviour
             }
         }   
     }
-    
-    private void Hold(GameObject target)
-    {
-        //gradually sychronizes the vertical velocity of target object (the dead body) to velocity of character. 
         
-        // simple test version: simply change veclocity
-        Rigidbody2D targetRigid = target.GetComponent<Rigidbody2D>();
-        if (targetRigid == null){
-            return;
-        }  
-        targetRigid.velocity = new Vector2(targetRigid.velocity.x,_rb.velocity.y) ;
-    }
-
     #endregion
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (_status!=PlayerState.dead){
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Hold(other.gameObject);
-        }
-        }
-        
-    }
-
-    private void OnStatusChanged(PlayerState newStatus){
-        // Load Player sprite depending on initial status
-        _sr.sprite = spriteArray[(int)_status];
-        switch (_status){
-            case PlayerState.soul:
-                _haloSprite.enabled = true;
-                break;
-            default:
-                _haloSprite.enabled = false;
-                break;
-        }
-    }
 }

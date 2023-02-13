@@ -169,6 +169,28 @@ public class PlayerController : MonoBehaviour
             }
         }   
     }
+    
+    private void Hold(GameObject target)
+    {
+        //gradually sychronizes the vertical velocity of target object (the dead body) to velocity of character. 
         
+        // simple test version: simply change veclocity
+        Rigidbody2D targetRigid = target.GetComponent<Rigidbody2D>();
+        if (targetRigid == null){
+            return;
+        }  
+        targetRigid.velocity = new Vector2(targetRigid.velocity.x,_rb.velocity.y) ;
+    }
+
     #endregion
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (_status!=Status.dead){
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Hold(other.gameObject);
+        }
+        }
+        
+    }
 }

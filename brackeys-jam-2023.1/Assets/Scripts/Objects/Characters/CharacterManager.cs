@@ -89,9 +89,10 @@ public class CharacterManager : MonoBehaviour
                 playerInstance.Status = PlayerState.dead;
                 break;
             default:
-
+                
             break;
         }
+        playerInstance.FlipY();
         //Debug.Log($"Player {playerInstance.name} crossed the RedLine. New State: {playerInstance.Status}");
     }
 }

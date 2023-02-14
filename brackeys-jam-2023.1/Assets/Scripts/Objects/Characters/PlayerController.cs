@@ -113,6 +113,13 @@ public class PlayerController : MonoBehaviour
             _rb.gravityScale = gravityScale * gravityMultiplier;
         }
     }
+
+    private Vector2 GetJumpDirection(){
+        Vector2 direction = new Vector2(0, Mathf.Sign(_rb.gravityScale));
+        Debug.Log(direction);
+        return direction;
+    }
+
     private void GatherInput()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
@@ -160,7 +167,9 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = true;
             // jumpTimeCounter = jumpTime;
-            _rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            //_rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            _rb.AddForce(GetJumpDirection() * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            
             // _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
             // _rb.velocity = Vector2.up * maxJumpForce;
             // _rb.velocity = Vector2.up * minJumpForce;
@@ -252,6 +261,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void FlipY(){
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);
+    }
+
+    public void FlipX(){
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+    }
+
     #endregion
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -280,6 +297,10 @@ public class PlayerController : MonoBehaviour
     private void OnPlayerCrossedLine(PlayerController playerInstance){
         if (playerInstance==this){
             //_rb.velocity.normalized.y;
+
+
         }
     }
+
+
 }

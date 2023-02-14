@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 1019844665
+    locked: 0
+  - name: Ground
+    uniqueID: 1601111895
+    locked: 0
+  - name: Flora
+    uniqueID: 3471674615
+    locked: 0
+  - name: Hazards
+    uniqueID: 3065589527
+    locked: 0

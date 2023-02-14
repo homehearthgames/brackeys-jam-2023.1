@@ -5,6 +5,10 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
+
+    [SerializeField] private PlayerController me;
+    [SerializeField] private PlayerController soul;
+    [SerializeField] private Transform spawnPoint;
     
     void Awake()
     {
@@ -21,9 +25,36 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(me == null && soul == null)
+        {
+            Debug.LogWarning("The initial Me or Soul is missing or not set in inspector");
+        }
     }
 
+    // Precondition: Me doesn't exist in the current level
+    public static void SpawnMe()
+    {
+        // Spawn a Me Prefab at the spawn location
+        // Trigger spawn animation if we have (if we do, make Player's initial state deactivate and make a tirgger in animation to activate)
+        // Set a reference to Me if not already set
+        // LogWarning if (me != null && me != Me Prefab)
+    }
+
+    public static void MeDies()
+    {
+        // Call me.ChangeState
+        // set soul = me, me = null
+        // Call SpawnMe()
+    }
+
+    public static void SoulDies()
+    {
+        // Call soul.ChangeState
+        // set soul = null
+    }
+
+
+    // Consider Moving the next 2 methods in PlayerControl
     public static float CalculateJumpForce(float gravityStrength, float jumpHeight)
     {
         //h = v^2/2g

@@ -15,18 +15,21 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump Settings")]
     // Jump related
-    [SerializeField] private float _minJumpHeight = 1.5f;
+    // [SerializeField] private float _minJumpHeight = 1.5f;
     [SerializeField] private float _maxJumpHeight = 2f;
     [SerializeField, Range(0.0f, 1.0f)] private float _jumpVelocityRatio = 0.5f; // The ratio of the minjumpforce to maintain
     private float minJumpForce;
     private float maxJumpForce;
     [SerializeField] private float maxHeight = 0;
+    [SerializeField] private float jumpCutOff;
+    private float gravityScale;
 
-    private bool jumpButtonDown;
-    private bool jumpButtonUp;
-    private bool isJumping = false;
-    private float jumpTime;
-    private float jumpTimeCounter;
+    // private bool jumpButtonDown;
+    // private bool jumpButtonUp;
+    public bool isJumping = false;
+    // private float jumpTime;
+    // private float jumpTimeCounter;
+    private float gravityMultiplier = 1.0f;
     private bool isGrounded = false;
     public bool IsGrounded{get{return isGrounded;}}
     [SerializeField] private Transform feetPos;
@@ -63,16 +66,12 @@ public class PlayerController : MonoBehaviour
     {
         // Calculate jump force
         _maxJumpHeight += 0.5f;
-        _minJumpHeight += 0.25f;
+        // _minJumpHeight += 0.25f;
 
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
-        minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
+        // minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
 
-        // Calculate the jump time
-        jumpTime = CharacterManager.CalculateJumpTime(Physics2D.gravity.magnitude * _rb.gravityScale, minJumpForce, _jumpVelocityRatio, _maxJumpHeight, _minJumpHeight);
-        // Debug.Log(_maxJumpHeight - _minJumpHeight);
-        // Debug.Log(minJumpForce);
-        Debug.Log(jumpTime);
+        gravityScale = _rb.gravityScale;
         
         this.Status = _status;
     }
@@ -80,15 +79,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalcGravity();
         GatherInput();
-        if(isGrounded)
-        {
-            maxHeight = 0;
-        }
-        else
-        {
-            maxHeight = Mathf.Max(maxHeight, transform.position.y);
-        }
+        CalcMaxHeight();
     }
 
     void FixedUpdate()
@@ -99,17 +92,19 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Helper Methods
+
+    private void CalcGravity()
+    {
+        // simple tester code to invert gravity.
+        if(transform.position.y< -0.5){
+            _rb.gravityScale = -gravityScale * gravityMultiplier;
+        }else{
+            _rb.gravityScale = gravityScale * gravityMultiplier;
+        }
+    }
     private void GatherInput()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
-
-        // simple tester code to invert gravity.
-        
-        if(transform.position.y< -0.5){
-            _rb.gravityScale = -3;
-        }else{
-            _rb.gravityScale = 3;
-        }
         
         // Horizontal moevment
         // Get horizontal input direction and jump input from input manager
@@ -153,15 +148,27 @@ public class PlayerController : MonoBehaviour
         if(jumpButtonDown && isGrounded)
         {
             isJumping = true;
-            jumpTimeCounter = jumpTime;
-            // _rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
-            _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
+            // jumpTimeCounter = jumpTime;
+            _rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            // _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
             // _rb.velocity = Vector2.up * maxJumpForce;
             // _rb.velocity = Vector2.up * minJumpForce;
         }
         if(jumpButtonUp)
         {
             isJumping = false;
+        }
+    }
+
+    private void CalcMaxHeight()
+    {
+        if(isGrounded)
+        {
+            maxHeight = 0;
+        }
+        else
+        {
+            maxHeight = Mathf.Max(maxHeight, transform.position.y);
         }
     }
 
@@ -172,18 +179,21 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if(isJumping)
+        if(_rb.velocity.y > 0.01f)
         {
-            if(jumpTimeCounter >= 0)
+            if(isJumping)
             {
-                _rb.velocity = Vector2.up * Mathf.Max(_rb.velocity.y, minJumpForce * _jumpVelocityRatio);
-                jumpTimeCounter -= Time.deltaTime;
+                gravityMultiplier = 1f;
             }
             else
             {
-                isJumping = false;
+                gravityMultiplier = jumpCutOff;
             }
-        }   
+        }
+        else 
+        {
+            gravityMultiplier = 1f;
+        }
     }
     
     private void Hold(GameObject target)
@@ -196,6 +206,24 @@ public class PlayerController : MonoBehaviour
             return;
         }  
         targetRigid.velocity = new Vector2(targetRigid.velocity.x,_rb.velocity.y) ;
+    }
+
+    // Precondition: Me will always change to Soul, Soul will always change to Dead, and Dead never changes state
+    public void ChangeState()
+    {
+        if(_status == PlayerState.me)
+        {
+            // Change to soul
+            // Change Sprite (Call OnStatusChange)
+            // Change gravity (if necessary)
+            // Flip the character flip (set scale.y to -1 )
+        }
+        else if(_status == PlayerState.soul)
+        {
+            // Change to dead
+            // Change Sprite
+            // deactivate (if necessary)
+        }
     }
 
     #endregion

@@ -11,7 +11,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private PlayerController me;
     [SerializeField] private PlayerController soul;
     [SerializeField] private Transform spawnPoint;
-    
+    [SerializeField] private GameObject playerPrefab;
     
     void Awake()
     {
@@ -41,22 +41,42 @@ public class CharacterManager : MonoBehaviour
     public static void SpawnMe()
     {
         // Spawn a Me Prefab at the spawn location
-        // Trigger spawn animation if we have (if we do, make Player's initial state deactivate and make a tirgger in animation to activate)
-        // Set a reference to Me if not already set
+        if (instance.playerPrefab!=null){
+            GameObject newMe = Instantiate(instance.playerPrefab, instance.spawnPoint.position, Quaternion.identity);
+            // Trigger spawn animation if we have (if we do, make Player's initial state deactivate and make a tirgger in animation to activate)
+            
+            // Set a reference to Me if not already set
+            instance.me = newMe.GetComponent<PlayerController>();
+
+        }
+            
         // LogWarning if (me != null && me != Me Prefab)
+        
     }
 
     public static void MeDies()
     {
         // Call me.ChangeState
+        instance.me.Status = PlayerState.soul;
+        // if soul != null, a soul exists, that soul dies first
+        if(instance.soul!=null){
+            SoulDies();
+        }
         // set soul = me, me = null
+        instance.soul = instance.me;
+        instance.me = null;
         // Call SpawnMe()
+        SpawnMe();
     }
 
     public static void SoulDies()
     {
         // Call soul.ChangeState
+        
+        instance.soul.Status = PlayerState.dead;
+        instance.soul.gameObject.layer = LayerMask.NameToLayer("Ground");
         // set soul = null
+        instance.soul = null;
     }
 
     private void OnDestroy() {
@@ -83,10 +103,13 @@ public class CharacterManager : MonoBehaviour
         
         switch(playerInstance.Status){
             case PlayerState.me:
-                playerInstance.Status = PlayerState.soul;
+                //playerInstance.Status = PlayerState.soul;
+                MeDies();
+                
                 break;
             case PlayerState.soul:
-                playerInstance.Status = PlayerState.dead;
+                //playerInstance.Status = PlayerState.dead;
+                SoulDies();
                 break;
             default:
                 

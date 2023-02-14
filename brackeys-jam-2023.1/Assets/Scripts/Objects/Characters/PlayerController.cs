@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static RedLineTrigger;
+using static CharacterManager;
 
 public class PlayerController : MonoBehaviour
 {
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 GetJumpDirection(){
         Vector2 direction = new Vector2(0, Mathf.Sign(_rb.gravityScale));
-        Debug.Log(direction);
+        //Debug.Log(direction);
         return direction;
     }
 
@@ -265,7 +266,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);
     }
 
-    public void FlipX(){
+    public  void FlipX(){
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
     }
 
@@ -287,6 +288,7 @@ public class PlayerController : MonoBehaviour
         switch (_status){
             case PlayerState.soul:
                 _haloSprite.enabled = true;
+                
                 break;
             default:
                 _haloSprite.enabled = false;

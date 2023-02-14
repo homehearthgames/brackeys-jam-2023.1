@@ -20,7 +20,7 @@ public class CharacterManager : MonoBehaviour
             instance = this;
         }
         //subscribe to event sent by RedLineTrigger
-        Debug.Log("Hello?");
+        //Debug.Log("Hello?");
         PlayerCrossedLine+=OnPlayerCrossedLine;
     }
 
@@ -62,6 +62,6 @@ public class CharacterManager : MonoBehaviour
 
             break;
         }
-        Debug.Log($"Player {playerInstance.name} crossed the RedLine. New State: {playerInstance.Status}");
+        //Debug.Log($"Player {playerInstance.name} crossed the RedLine. New State: {playerInstance.Status}");
     }
 }

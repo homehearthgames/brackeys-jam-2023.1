@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RedLineTrigger;
 
 public class PlayerController : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     #region Main Methods
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
+        PlayerCrossedLine += OnPlayerCrossedLine;
     }
     // Start is called before the first frame update
     void Start()
@@ -88,6 +90,10 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Move();
+    }
+
+    void OnDestroy(){
+        PlayerCrossedLine -= OnPlayerCrossedLine;
     }
     #endregion
 
@@ -228,6 +234,12 @@ public class PlayerController : MonoBehaviour
             default:
                 _haloSprite.enabled = false;
                 break;
+        }
+    }
+
+    private void OnPlayerCrossedLine(PlayerController playerInstance){
+        if (playerInstance==this){
+            //_rb.velocity.normalized.y;
         }
     }
 }

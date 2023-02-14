@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     // private bool jumpButtonDown;
     // private bool jumpButtonUp;
+    private bool jumpButtonPress;
     public bool isJumping = false;
     // private float jumpTime;
     // private float jumpTimeCounter;
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
     private void CalcGravity()
     {
         // simple tester code to invert gravity.
-        if(transform.position.y< -0.5){
+        if(!aboveRedLine()){
             _rb.gravityScale = -gravityScale * gravityMultiplier;
         }else{
             _rb.gravityScale = gravityScale * gravityMultiplier;
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
                 x = Input.GetAxisRaw("Horizontal");
                 jumpButtonDown = Input.GetButtonDown("MeJump");
                 jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
+                jumpButtonPress = Input.GetButton("MeJump");
                 break;
             case PlayerState.soul:
                 // When the character is Soul
@@ -146,12 +148,14 @@ public class PlayerController : MonoBehaviour
                 x = Input.GetAxisRaw("Horizontal");
                 jumpButtonDown = Input.GetButtonDown("SoulJump");
                 jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
+                jumpButtonPress = Input.GetButton("SoulJump");
                 break;
             default:
                 // When the character is dead
                 x = 0;
                 jumpButtonDown = false;
                 jumpButtonUp = false;
+                jumpButtonPress = false;
                 break;
         }
         
@@ -169,13 +173,14 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             // jumpTimeCounter = jumpTime;
             //_rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
-            _rb.AddForce(GetJumpDirection() * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
+            // _rb.AddForce(GetJumpDirection() * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
             
             // _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
-            // _rb.velocity = Vector2.up * maxJumpForce;
+            _rb.velocity = (_status == PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
             // _rb.velocity = Vector2.up * minJumpForce;
         }
-        if(jumpButtonUp)
+
+        if(!jumpButtonPress && isGrounded)
         {
             isJumping = false;
         }
@@ -200,19 +205,23 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if(_rb.velocity.y > 0.01f)
+        if((_rb.velocity.y > 0.01f && aboveRedLine()) || (_rb.velocity.y < -0.01f && !aboveRedLine()))
         {
             if(isJumping)
             {
-                gravityMultiplier = 1f;
-            }
-            else
-            {
-                gravityMultiplier = jumpCutOff;
-            }
+                if(jumpButtonPress)
+                {
+                    gravityMultiplier = 1f;
+                }
+                else
+                {
+                    gravityMultiplier = jumpCutOff;
+                }
+            } 
         }
         else 
         {
+            isJumping = false;
             gravityMultiplier = 1f;
         }
     }
@@ -260,6 +269,11 @@ public class PlayerController : MonoBehaviour
             // Change Sprite
             // deactivate (if necessary)
         }
+    }
+
+    private bool aboveRedLine()
+    {
+        return transform.position.y >= -0.5;
     }
 
     public void FlipY(){

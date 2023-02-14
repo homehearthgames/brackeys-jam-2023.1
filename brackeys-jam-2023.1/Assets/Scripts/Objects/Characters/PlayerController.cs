@@ -44,13 +44,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerState _status;
     public PlayerState Status {
         get{return _status;}
-        private set {
+        set {
             _status = value;
             OnStatusChanged(_status);
         }
         }
     [Header("Sprites Related")]
     [SerializeField] private Sprite[] spriteArray;
+
+    
 
     #endregion
 
@@ -61,19 +63,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Calculate jump force
-        _maxJumpHeight += 0.5f;
-        _minJumpHeight += 0.25f;
-
-        maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
-        minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
-
-        // Calculate the jump time
-        jumpTime = CharacterManager.CalculateJumpTime(Physics2D.gravity.magnitude * _rb.gravityScale, minJumpForce, _jumpVelocityRatio, _maxJumpHeight, _minJumpHeight);
-        // Debug.Log(_maxJumpHeight - _minJumpHeight);
-        // Debug.Log(minJumpForce);
-        Debug.Log(jumpTime);
+        //call Character Manager to calculate jumpforce for player.
+       InitializeJumpForce();
         
+        //Triggers the setter function to update Status related changes.
         this.Status = _status;
     }
 
@@ -196,6 +189,21 @@ public class PlayerController : MonoBehaviour
             return;
         }  
         targetRigid.velocity = new Vector2(targetRigid.velocity.x,_rb.velocity.y) ;
+    }
+
+    private void InitializeJumpForce(){
+         // Calculate jump force
+        _maxJumpHeight += 0.5f;
+        _minJumpHeight += 0.25f;
+
+        maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
+        minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
+
+        // Calculate the jump time
+        jumpTime = CharacterManager.CalculateJumpTime(Physics2D.gravity.magnitude * _rb.gravityScale, minJumpForce, _jumpVelocityRatio, _maxJumpHeight, _minJumpHeight);
+        // Debug.Log(_maxJumpHeight - _minJumpHeight);
+        // Debug.Log(minJumpForce);
+        //Debug.Log(jumpTime);
     }
 
     #endregion

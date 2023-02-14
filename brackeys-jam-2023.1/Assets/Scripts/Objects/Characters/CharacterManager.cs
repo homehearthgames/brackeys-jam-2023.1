@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RedLineTrigger;
+using static PlayerController;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private PlayerController me;
     [SerializeField] private PlayerController soul;
     [SerializeField] private Transform spawnPoint;
+    
     
     void Awake()
     {
@@ -20,6 +23,9 @@ public class CharacterManager : MonoBehaviour
         {
             instance = this;
         }
+        //subscribe to event sent by RedLineTrigger
+        //Debug.Log("Hello?");
+        PlayerCrossedLine+=OnPlayerCrossedLine;
     }
 
     // Start is called before the first frame update
@@ -53,6 +59,9 @@ public class CharacterManager : MonoBehaviour
         // set soul = null
     }
 
+    private void OnDestroy() {
+        PlayerCrossedLine-=OnPlayerCrossedLine;
+    }
 
     // Consider Moving the next 2 methods in PlayerControl
     public static float CalculateJumpForce(float gravityStrength, float jumpHeight)
@@ -68,5 +77,21 @@ public class CharacterManager : MonoBehaviour
         // time takes to reach jumpVelocity * velocityRatio + time to take 
         return (jumpVelocity * (velocityRatio - 1)) / - gravityStrength + 
                (maxJumpHeight - minJumpHeight) / (jumpVelocity * velocityRatio);
+    }
+
+    public static void OnPlayerCrossedLine(PlayerController playerInstance){
+        
+        switch(playerInstance.Status){
+            case PlayerState.me:
+                playerInstance.Status = PlayerState.soul;
+                break;
+            case PlayerState.soul:
+                playerInstance.Status = PlayerState.dead;
+                break;
+            default:
+
+            break;
+        }
+        //Debug.Log($"Player {playerInstance.name} crossed the RedLine. New State: {playerInstance.Status}");
     }
 }

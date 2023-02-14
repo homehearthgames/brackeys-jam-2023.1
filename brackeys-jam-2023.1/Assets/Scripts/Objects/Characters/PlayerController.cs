@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RedLineTrigger;
 
 public class PlayerController : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerState _status;
     public PlayerState Status {
         get{return _status;}
-        private set {
+        set {
             _status = value;
             OnStatusChanged(_status);
         }
@@ -55,11 +56,14 @@ public class PlayerController : MonoBehaviour
     [Header("Sprites Related")]
     [SerializeField] private Sprite[] spriteArray;
 
+    
+
     #endregion
 
     #region Main Methods
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
+        PlayerCrossedLine += OnPlayerCrossedLine;
     }
     // Start is called before the first frame update
     void Start()
@@ -72,7 +76,10 @@ public class PlayerController : MonoBehaviour
         // minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
 
         gravityScale = _rb.gravityScale;
+        //call Character Manager to calculate jumpforce for player.
+       InitializeJumpForce();
         
+        //Triggers the setter function to update Status related changes.
         this.Status = _status;
     }
 
@@ -88,6 +95,10 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Move();
+    }
+
+    void OnDestroy(){
+        PlayerCrossedLine -= OnPlayerCrossedLine;
     }
     #endregion
 
@@ -209,6 +220,21 @@ public class PlayerController : MonoBehaviour
     }
 
     // Precondition: Me will always change to Soul, Soul will always change to Dead, and Dead never changes state
+    private void InitializeJumpForce(){
+         // Calculate jump force
+        _maxJumpHeight += 0.5f;
+        // _minJumpHeight += 0.25f;
+
+        maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
+        // minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
+
+        // Calculate the jump time
+        // jumpTime = CharacterManager.CalculateJumpTime(Physics2D.gravity.magnitude * _rb.gravityScale, minJumpForce, _jumpVelocityRatio, _maxJumpHeight, _minJumpHeight);
+        // Debug.Log(_maxJumpHeight - _minJumpHeight);
+        // Debug.Log(minJumpForce);
+        //Debug.Log(jumpTime);
+    }
+
     public void ChangeState()
     {
         if(_status == PlayerState.me)
@@ -248,6 +274,12 @@ public class PlayerController : MonoBehaviour
             default:
                 _haloSprite.enabled = false;
                 break;
+        }
+    }
+
+    private void OnPlayerCrossedLine(PlayerController playerInstance){
+        if (playerInstance==this){
+            //_rb.velocity.normalized.y;
         }
     }
 }

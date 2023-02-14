@@ -52,10 +52,11 @@ MonoBehaviour:
   _sr: {fileID: 7530704731723386063}
   _haloSprite: {fileID: 6708304294028504366}
   _speed: 5
-  _minJumpHeight: 1
   _maxJumpHeight: 2
   _jumpVelocityRatio: 0.75
   maxHeight: 0
+  jumpCutOff: 2
+  isJumping: 0
   feetPos: {fileID: 475635199659894421}
   checkRadius: 0.3
   whatIsGround:

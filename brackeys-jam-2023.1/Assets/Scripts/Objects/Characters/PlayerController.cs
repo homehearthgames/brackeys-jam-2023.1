@@ -18,11 +18,11 @@ public class PlayerController : MonoBehaviour
     // Jump related
     // [SerializeField] private float _minJumpHeight = 1.5f;
     [SerializeField] private float _maxJumpHeight = 2f;
-    [SerializeField, Range(0.0f, 1.0f)] private float _jumpVelocityRatio = 0.5f; // The ratio of the minjumpforce to maintain
-    private float minJumpForce;
+    // [SerializeField, Range(0.0f, 1.0f)] private float _jumpVelocityRatio = 0.5f; // The ratio of the minjumpforce to maintain
+    [SerializeField] private float jumpCutOff = 2f;
+    // private float minJumpForce;
     private float maxJumpForce;
     [SerializeField] private float maxHeight = 0;
-    [SerializeField] private float jumpCutOff;
     private float gravityScale;
 
     // private bool jumpButtonDown;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static RedLineTrigger;
 using static CharacterManager;
+using static Player;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpCutOff = 2f;
     private float maxJumpForce;
     private float gravityScale;
-
+    
     private bool jumpButtonPress;
     public bool isJumping = false;
     private float gravityMultiplier = 1.0f;
@@ -67,11 +68,30 @@ public class PlayerController : MonoBehaviour
     private void CalcGravity()
     {
         // simple tester code to invert gravity.
+        /*
         if(!aboveRedLine()){
             _rb.gravityScale = -gravityScale * gravityMultiplier;
         }else{
             _rb.gravityScale = gravityScale * gravityMultiplier;
         }
+        */
+        //the gravity scale now depends on the player status. 
+        switch(_player.Status){
+            case PlayerState.me:
+                _rb.gravityScale = gravityScale * gravityMultiplier;
+            break;
+            case PlayerState.soul:
+                _rb.gravityScale = -gravityScale * gravityMultiplier;
+            break;
+            default:
+                if(!aboveRedLine()){
+                    _rb.gravityScale = -gravityScale * gravityMultiplier;
+                }else{
+                    _rb.gravityScale = gravityScale * gravityMultiplier;
+                }
+            break;
+        }
+
     }
 
     private Vector2 GetJumpDirection(){

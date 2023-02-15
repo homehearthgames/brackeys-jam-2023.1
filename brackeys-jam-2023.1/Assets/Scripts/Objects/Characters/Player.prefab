@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sr: {fileID: 7530704731723386063}
   _haloSprite: {fileID: 6708304294028504366}
+  _pc: {fileID: 475635199103130657}
   _active: 1
   _status: 0
   spriteArray:

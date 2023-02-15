@@ -192,6 +192,11 @@ public class PlayerController : MonoBehaviour
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
     }
 
+    public void resetVelocity()
+    {
+        _rb.velocity = Vector2.zero;
+    }
+
 
     private bool aboveRedLine()
     {

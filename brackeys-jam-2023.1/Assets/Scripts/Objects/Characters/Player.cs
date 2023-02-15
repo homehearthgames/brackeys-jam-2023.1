@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private SpriteRenderer _haloSprite;
 
-    // [SerializeField] private PlayerController _pc;
+    [SerializeField] private PlayerController _pc;
 
     // PlayerState related
     public enum PlayerState
@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
     }
     void OnDestroy(){
         PlayerCrossedLine -= OnPlayerCrossedLine;
+    }
+
+    public void resetVelocity()
+    {
+        _pc.resetVelocity();
     }
 
     public void FlipY(){

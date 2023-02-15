@@ -23,9 +23,15 @@ public class CharacterManager : MonoBehaviour
         {
             instance = this;
         }
+
+        if(playerPrefab == null)
+        {
+            Debug.LogWarning("playerPrefab is Null in CharacterManager!!");
+        }
+        
         //subscribe to event sent by RedLineTrigger
         //Debug.Log("Hello?");
-        PlayerCrossedLine+=OnPlayerCrossedLine;
+        PlayerCrossedLine+=OnPlayerCrossedLine;        
     }
 
     // Start is called before the first frame update
@@ -62,26 +68,49 @@ public class CharacterManager : MonoBehaviour
     }
 
     // Precondition: Me doesn't exist in the current level
-    public static void SpawnMe()
+    public static void SpawnMe(Vector3 spawnPosition)
     {
         // Spawn a Me Prefab at the spawn location
-        if (instance.playerPrefab!=null){
-            GameObject newMe = Instantiate(instance.playerPrefab, instance.spawnPoint.position, Quaternion.identity);
+        if (instance.playerPrefab != null){
+            GameObject newMe = Instantiate(instance.playerPrefab, spawnPosition, Quaternion.identity);
             // Trigger spawn animation if we have (if we do, make Player's initial state deactivate and make a tirgger in animation to activate)
             
             // Set a reference to Me if not already set
             instance.me = newMe.GetComponent<Player>();
             instance.me._active = false;
         }
-            
         // LogWarning if (me != null && me != Me Prefab)
+    }
+
+    public static void SpawnSoul(Vector3 spawnPosition)
+    {
+        if(instance.soul != null)
+        {
+            SoulDies();
+        }
+        GameObject newSoul = Instantiate(instance.playerPrefab, spawnPosition, Quaternion.identity);
         
+        // Trigger spawn animation if we have (if we do, make Player's initial state deactivate and make a tirgger in animation to activate)
+            
+        // Set a reference to Me if not already set
+        instance.soul = newSoul.GetComponent<Player>();
+        instance.soul._status = PlayerState.soul;
+    }
+
+    public static void SpawnDead(Vector3 spawnPosition)
+    {
+        GameObject newDead = Instantiate(instance.playerPrefab, spawnPosition, Quaternion.identity);
+
+        Player dead =  newDead.GetComponent<Player>();
+        dead._active = false;
+        dead._status = PlayerState.dead;
     }
 
     public static void MeDies()
     {
         // change state
         instance.me.Status = PlayerState.soul;
+        instance.me.FlipY();
         // if soul != null, a soul exists, that soul dies first
         if(instance.soul!=null){
             SoulDies();
@@ -90,7 +119,7 @@ public class CharacterManager : MonoBehaviour
         instance.soul = instance.me;
         instance.me = null;
         // Call SpawnMe()
-        SpawnMe();
+        SpawnMe(instance.spawnPoint.position);
     }
 
     public static void SoulDies()
@@ -98,6 +127,7 @@ public class CharacterManager : MonoBehaviour
         // change state
         instance.soul.Status = PlayerState.dead;
         instance.soul.gameObject.layer = LayerMask.NameToLayer("Ground");
+        instance.soul.FlipY();
         // set active to false and pass the active to Me
         instance.soul._active = false;
         instance.me._active = true;
@@ -141,7 +171,7 @@ public class CharacterManager : MonoBehaviour
                 Destroy(playerInstance.gameObject);
             break;
         }
-        playerInstance.FlipY();
+        // playerInstance.FlipY();
         //Debug.Log($"Player {playerInstance.name} crossed the RedLine. New State: {playerInstance.Status}");
     }
 }

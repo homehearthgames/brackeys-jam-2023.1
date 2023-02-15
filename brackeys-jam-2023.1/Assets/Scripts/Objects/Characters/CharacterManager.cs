@@ -37,6 +37,30 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        getSwitchInput();
+    }
+
+    // Precondition: Me always exists in the level
+    private void getSwitchInput()
+    {
+        // Switch only works when Soul exists
+        if(soul != null)
+        {
+            if(Input.GetButtonDown("MeSwitch"))
+            {
+                me._active = true;
+                soul._active = false;
+            } 
+            else if(Input.GetButtonDown("SoulSwitch"))
+            {
+                me._active = false;
+                soul._active = true;
+            }
+        }
+    }
+
     // Precondition: Me doesn't exist in the current level
     public static void SpawnMe()
     {
@@ -47,7 +71,7 @@ public class CharacterManager : MonoBehaviour
             
             // Set a reference to Me if not already set
             instance.me = newMe.GetComponent<Player>();
-
+            instance.me._active = false;
         }
             
         // LogWarning if (me != null && me != Me Prefab)
@@ -56,7 +80,7 @@ public class CharacterManager : MonoBehaviour
 
     public static void MeDies()
     {
-        // Call me.ChangeState
+        // change state
         instance.me.Status = PlayerState.soul;
         // if soul != null, a soul exists, that soul dies first
         if(instance.soul!=null){
@@ -71,10 +95,12 @@ public class CharacterManager : MonoBehaviour
 
     public static void SoulDies()
     {
-        // Call soul.ChangeState
-        
+        // change state
         instance.soul.Status = PlayerState.dead;
         instance.soul.gameObject.layer = LayerMask.NameToLayer("Ground");
+        // set active to false and pass the active to Me
+        instance.soul._active = false;
+        instance.me._active = true;
         // set soul = null
         instance.soul = null;
     }

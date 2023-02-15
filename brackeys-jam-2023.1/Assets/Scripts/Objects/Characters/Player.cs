@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
         dead = 2
     };
     [Header("PlayerState Settings")]
+    [SerializeField] public bool _active = true;
     [SerializeField] public PlayerState _status;
     public PlayerState Status {
         get{return _status;}
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
             OnStatusChanged(_status);
         }
     }
-
+    
     // Sprites
     [Header("Sprites Related")]
     [SerializeField] private Sprite[] spriteArray;
@@ -60,8 +61,13 @@ public class Player : MonoBehaviour
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
     }
 
+    // Precondition: Me will always change to Soul, Soul will always change to Dead, and Dead never changes state
     private void OnStatusChanged(PlayerState newStatus){
         // Load Player sprite depending on initial status
+        if(newStatus == PlayerState.dead)
+        {
+            _active = false;
+        }
         _sr.sprite = spriteArray[(int)_status];
         switch (_status){
             case PlayerState.soul:

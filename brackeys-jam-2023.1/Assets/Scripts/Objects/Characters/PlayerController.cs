@@ -7,8 +7,6 @@ using static CharacterManager;
 public class PlayerController : MonoBehaviour
 {
     #region Variables
-    // [SerializeField] private SpriteRenderer _sr;
-    // [SerializeField] private SpriteRenderer _haloSprite;
     [SerializeField] private Player _player;
     private Rigidbody2D _rb;
 
@@ -19,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Settings")]
     // Jump related
     [SerializeField] private float _maxJumpHeight = 2f;
-    [SerializeField] private float jumpCutOff = 2f;
+    [SerializeField] private float _jumpCutOff = 2f;
     private float maxJumpForce;
     private float gravityScale;
 
@@ -32,50 +30,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float checkRadius;
     [SerializeField] private LayerMask whatIsGround;
 
-    // PlayerState related
-    // public enum PlayerState
-    // {
-    //     me = 0,
-    //     soul = 1,
-    //     dead = 2
-    // };
-    // [Header("PlayerState Settings")]
-    // [SerializeField] private PlayerState _status;
-    // public PlayerState Status {
-    //     get{return _status;}
-    //     set {
-    //         _status = value;
-    //         OnStatusChanged(_status);
-    //     }
-    // }
-    // [Header("Sprites Related")]
-    // [SerializeField] private Sprite[] spriteArray;
-
-    
-
     #endregion
 
     #region Main Methods
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
-        // PlayerCrossedLine += OnPlayerCrossedLine;
     }
     // Start is called before the first frame update
     void Start()
     {
         // Calculate jump force
         _maxJumpHeight += 0.5f;
-        // _minJumpHeight += 0.25f;
 
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
-        // minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
 
         gravityScale = _rb.gravityScale;
         //call Character Manager to calculate jumpforce for player.
         InitializeJumpForce();
-        
-        //Triggers the setter function to update Status related changes.
-        // this.Status = _status;
     }
 
     // Update is called once per frame
@@ -91,9 +62,6 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    // void OnDestroy(){
-    //     PlayerCrossedLine -= OnPlayerCrossedLine;
-    // }
     #endregion
 
     #region Helper Methods
@@ -110,7 +78,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 GetJumpDirection(){
         Vector2 direction = new Vector2(0, Mathf.Sign(_rb.gravityScale));
-        //Debug.Log(direction);
         return direction;
     }
 
@@ -120,36 +87,22 @@ public class PlayerController : MonoBehaviour
         
         // Horizontal moevment
         // Get horizontal input direction and jump input from input manager
-        float x;
-        bool jumpButtonDown;
-        bool jumpButtonUp;
+        float x = 0;
+        bool jumpButtonDown = false;
+        bool jumpButtonUp = false;
 
-        switch (_player._status)
+        if(_player._active)
         {
-            case Player.PlayerState.me:
-                // When the character is Me
-                // Get Axis from "A" and "D"
-                x = Input.GetAxisRaw("Horizontal");
-                jumpButtonDown = Input.GetButtonDown("MeJump");
-                jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
-                jumpButtonPress = Input.GetButton("MeJump");
-                break;
-            case Player.PlayerState.soul:
-                // When the character is Soul
-                // Get Axis from "Left" and "Right"
-                x = Input.GetAxisRaw("Horizontal");
-                jumpButtonDown = Input.GetButtonDown("SoulJump");
-                jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
-                jumpButtonPress = Input.GetButton("SoulJump");
-                break;
-            default:
-                // When the character is dead
-                x = 0;
-                jumpButtonDown = false;
-                jumpButtonUp = false;
-                jumpButtonPress = false;
-                break;
+            x = Input.GetAxisRaw("Horizontal");
+            jumpButtonDown = Input.GetButtonDown("Jump");
+            jumpButtonUp = Input.GetButtonUp("Jump");
+            jumpButtonPress = Input.GetButton("Jump");
         }
+        else
+        {
+            jumpButtonPress = false;
+        }
+        
         
         // Horizontal movement
         inputDirection = new Vector2(x, 0);
@@ -159,17 +112,10 @@ public class PlayerController : MonoBehaviour
         }
         
         // Jump
-        // Since holding down jump button jumps higher, this 
         if(jumpButtonDown && isGrounded)
         {
             isJumping = true;
-            // jumpTimeCounter = jumpTime;
-            //_rb.AddForce(Vector2.up * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
-            // _rb.AddForce(GetJumpDirection() * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
-            
-            // _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
             _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
-            // _rb.velocity = Vector2.up * minJumpForce;
         }
 
         if(!jumpButtonPress && isGrounded)
@@ -195,7 +141,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    gravityMultiplier = jumpCutOff;
+                    gravityMultiplier = _jumpCutOff;
                 }
             } 
         }
@@ -218,51 +164,17 @@ public class PlayerController : MonoBehaviour
         targetRigid.velocity = new Vector2(targetRigid.velocity.x,_rb.velocity.y) ;
     }
 
-    // Precondition: Me will always change to Soul, Soul will always change to Dead, and Dead never changes state
     private void InitializeJumpForce(){
          // Calculate jump force
         _maxJumpHeight += 0.5f;
-        // _minJumpHeight += 0.25f;
-
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
-        // minJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _minJumpHeight);
-
-        // Calculate the jump time
-        // jumpTime = CharacterManager.CalculateJumpTime(Physics2D.gravity.magnitude * _rb.gravityScale, minJumpForce, _jumpVelocityRatio, _maxJumpHeight, _minJumpHeight);
-        // Debug.Log(_maxJumpHeight - _minJumpHeight);
-        // Debug.Log(minJumpForce);
-        //Debug.Log(jumpTime);
     }
 
-    // public void ChangeState()
-    // {
-    //     if(_status == PlayerState.me)
-    //     {
-    //         // Change to soul
-    //         // Change Sprite (Call OnStatusChange)
-    //         // Change gravity (if necessary)
-    //         // Flip the character flip (set scale.y to -1 )
-    //     }
-    //     else if(_status == PlayerState.soul)
-    //     {
-    //         // Change to dead
-    //         // Change Sprite
-    //         // deactivate (if necessary)
-    //     }
-    // }
 
     private bool aboveRedLine()
     {
         return transform.position.y >= -0.5;
     }
-
-    // public void FlipY(){
-    //     gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);
-    // }
-
-    // public  void FlipX(){
-    //     gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-    // }
 
     #endregion
 
@@ -274,28 +186,6 @@ public class PlayerController : MonoBehaviour
             }
         }   
     }
-
-    // private void OnStatusChanged(PlayerState newStatus){
-    //     // Load Player sprite depending on initial status
-    //     _sr.sprite = spriteArray[(int)_status];
-    //     switch (_status){
-    //         case PlayerState.soul:
-    //             _haloSprite.enabled = true;
-                
-    //             break;
-    //         default:
-    //             _haloSprite.enabled = false;
-    //             break;
-    //     }
-    // }
-
-    // private void OnPlayerCrossedLine(PlayerController playerInstance){
-    //     if (playerInstance==this){
-    //         //_rb.velocity.normalized.y;
-
-
-    //     }
-    // }
 
 
 }

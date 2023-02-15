@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b5bfed4c751ea40bacc4a5754a7a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  me: {fileID: 1636381830}
+  me: {fileID: 1636381834}
   soul: {fileID: 0}
   spawnPoint: {fileID: 1636708029}
   playerPrefab: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
@@ -2378,15 +2378,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1636381830 stripped
+--- !u!114 &1636381834 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 475635199103130657, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8124474356338004906, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
   m_PrefabInstance: {fileID: 1226219372}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ebe6ad19a63fc41aeb9ff355de4a77, type: 3}
+  m_Script: {fileID: 11500000, guid: 34cb44b250b193a4284f14b3f2a37813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1636708028
@@ -2599,7 +2599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827490297993358935, guid: 19c79e5f01e865e4e82956b9462a0609, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2827490297993358935, guid: 19c79e5f01e865e4e82956b9462a0609, type: 3}
       propertyPath: maxSpawns

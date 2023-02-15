@@ -7,8 +7,9 @@ using static CharacterManager;
 public class PlayerController : MonoBehaviour
 {
     #region Variables
-    [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private SpriteRenderer _haloSprite;
+    // [SerializeField] private SpriteRenderer _sr;
+    // [SerializeField] private SpriteRenderer _haloSprite;
+    [SerializeField] private Player _player;
     private Rigidbody2D _rb;
 
     [Header("Speed Setting")]
@@ -17,21 +18,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump Settings")]
     // Jump related
-    // [SerializeField] private float _minJumpHeight = 1.5f;
     [SerializeField] private float _maxJumpHeight = 2f;
-    // [SerializeField, Range(0.0f, 1.0f)] private float _jumpVelocityRatio = 0.5f; // The ratio of the minjumpforce to maintain
     [SerializeField] private float jumpCutOff = 2f;
-    // private float minJumpForce;
     private float maxJumpForce;
-    [SerializeField] private float maxHeight = 0;
     private float gravityScale;
 
-    // private bool jumpButtonDown;
-    // private bool jumpButtonUp;
     private bool jumpButtonPress;
     public bool isJumping = false;
-    // private float jumpTime;
-    // private float jumpTimeCounter;
     private float gravityMultiplier = 1.0f;
     private bool isGrounded = false;
     public bool IsGrounded{get{return isGrounded;}}
@@ -40,23 +33,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
 
     // PlayerState related
-    public enum PlayerState
-    {
-        me = 0,
-        soul = 1,
-        dead = 2
-    };
-    [Header("PlayerState Settings")]
-    [SerializeField] private PlayerState _status;
-    public PlayerState Status {
-        get{return _status;}
-        set {
-            _status = value;
-            OnStatusChanged(_status);
-        }
-        }
-    [Header("Sprites Related")]
-    [SerializeField] private Sprite[] spriteArray;
+    // public enum PlayerState
+    // {
+    //     me = 0,
+    //     soul = 1,
+    //     dead = 2
+    // };
+    // [Header("PlayerState Settings")]
+    // [SerializeField] private PlayerState _status;
+    // public PlayerState Status {
+    //     get{return _status;}
+    //     set {
+    //         _status = value;
+    //         OnStatusChanged(_status);
+    //     }
+    // }
+    // [Header("Sprites Related")]
+    // [SerializeField] private Sprite[] spriteArray;
 
     
 
@@ -65,7 +58,7 @@ public class PlayerController : MonoBehaviour
     #region Main Methods
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
-        PlayerCrossedLine += OnPlayerCrossedLine;
+        // PlayerCrossedLine += OnPlayerCrossedLine;
     }
     // Start is called before the first frame update
     void Start()
@@ -79,10 +72,10 @@ public class PlayerController : MonoBehaviour
 
         gravityScale = _rb.gravityScale;
         //call Character Manager to calculate jumpforce for player.
-       InitializeJumpForce();
+        InitializeJumpForce();
         
         //Triggers the setter function to update Status related changes.
-        this.Status = _status;
+        // this.Status = _status;
     }
 
     // Update is called once per frame
@@ -90,7 +83,6 @@ public class PlayerController : MonoBehaviour
     {
         CalcGravity();
         GatherInput();
-        CalcMaxHeight();
     }
 
     void FixedUpdate()
@@ -99,9 +91,9 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    void OnDestroy(){
-        PlayerCrossedLine -= OnPlayerCrossedLine;
-    }
+    // void OnDestroy(){
+    //     PlayerCrossedLine -= OnPlayerCrossedLine;
+    // }
     #endregion
 
     #region Helper Methods
@@ -132,9 +124,9 @@ public class PlayerController : MonoBehaviour
         bool jumpButtonDown;
         bool jumpButtonUp;
 
-        switch (_status)
+        switch (_player._status)
         {
-            case PlayerState.me:
+            case Player.PlayerState.me:
                 // When the character is Me
                 // Get Axis from "A" and "D"
                 x = Input.GetAxisRaw("Horizontal");
@@ -142,7 +134,7 @@ public class PlayerController : MonoBehaviour
                 jumpButtonUp = Input.GetButtonUp("MeJump") || Input.GetButtonUp("SoulJump");
                 jumpButtonPress = Input.GetButton("MeJump");
                 break;
-            case PlayerState.soul:
+            case Player.PlayerState.soul:
                 // When the character is Soul
                 // Get Axis from "Left" and "Right"
                 x = Input.GetAxisRaw("Horizontal");
@@ -176,25 +168,13 @@ public class PlayerController : MonoBehaviour
             // _rb.AddForce(GetJumpDirection() * maxJumpForce * _rb.mass, ForceMode2D.Impulse);
             
             // _rb.AddForce(Vector2.up * minJumpForce * _rb.mass, ForceMode2D.Impulse);
-            _rb.velocity = (_status == PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
+            _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
             // _rb.velocity = Vector2.up * minJumpForce;
         }
 
         if(!jumpButtonPress && isGrounded)
         {
             isJumping = false;
-        }
-    }
-
-    private void CalcMaxHeight()
-    {
-        if(isGrounded)
-        {
-            maxHeight = 0;
-        }
-        else
-        {
-            maxHeight = Mathf.Max(maxHeight, transform.position.y);
         }
     }
 
@@ -254,69 +234,68 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(jumpTime);
     }
 
-    public void ChangeState()
-    {
-        if(_status == PlayerState.me)
-        {
-            // Change to soul
-            // Change Sprite (Call OnStatusChange)
-            // Change gravity (if necessary)
-            // Flip the character flip (set scale.y to -1 )
-        }
-        else if(_status == PlayerState.soul)
-        {
-            // Change to dead
-            // Change Sprite
-            // deactivate (if necessary)
-        }
-    }
+    // public void ChangeState()
+    // {
+    //     if(_status == PlayerState.me)
+    //     {
+    //         // Change to soul
+    //         // Change Sprite (Call OnStatusChange)
+    //         // Change gravity (if necessary)
+    //         // Flip the character flip (set scale.y to -1 )
+    //     }
+    //     else if(_status == PlayerState.soul)
+    //     {
+    //         // Change to dead
+    //         // Change Sprite
+    //         // deactivate (if necessary)
+    //     }
+    // }
 
     private bool aboveRedLine()
     {
         return transform.position.y >= -0.5;
     }
 
-    public void FlipY(){
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);
-    }
+    // public void FlipY(){
+    //     gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);
+    // }
 
-    public  void FlipX(){
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-    }
+    // public  void FlipX(){
+    //     gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+    // }
 
     #endregion
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (_status!=PlayerState.dead){
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Hold(other.gameObject);
-        }
-        }
-        
+        if (_player._status != Player.PlayerState.dead){
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Hold(other.gameObject);
+            }
+        }   
     }
 
-    private void OnStatusChanged(PlayerState newStatus){
-        // Load Player sprite depending on initial status
-        _sr.sprite = spriteArray[(int)_status];
-        switch (_status){
-            case PlayerState.soul:
-                _haloSprite.enabled = true;
+    // private void OnStatusChanged(PlayerState newStatus){
+    //     // Load Player sprite depending on initial status
+    //     _sr.sprite = spriteArray[(int)_status];
+    //     switch (_status){
+    //         case PlayerState.soul:
+    //             _haloSprite.enabled = true;
                 
-                break;
-            default:
-                _haloSprite.enabled = false;
-                break;
-        }
-    }
+    //             break;
+    //         default:
+    //             _haloSprite.enabled = false;
+    //             break;
+    //     }
+    // }
 
-    private void OnPlayerCrossedLine(PlayerController playerInstance){
-        if (playerInstance==this){
-            //_rb.velocity.normalized.y;
+    // private void OnPlayerCrossedLine(PlayerController playerInstance){
+    //     if (playerInstance==this){
+    //         //_rb.velocity.normalized.y;
 
 
-        }
-    }
+    //     }
+    // }
 
 
 }

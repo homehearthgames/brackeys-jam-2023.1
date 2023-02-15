@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static RedLineTrigger;
-using static PlayerController;
+using static Player;
 
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
 
-    [SerializeField] private PlayerController me;
-    [SerializeField] private PlayerController soul;
+    [SerializeField] private Player me;
+    [SerializeField] private Player soul;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject playerPrefab;
     
@@ -46,7 +46,7 @@ public class CharacterManager : MonoBehaviour
             // Trigger spawn animation if we have (if we do, make Player's initial state deactivate and make a tirgger in animation to activate)
             
             // Set a reference to Me if not already set
-            instance.me = newMe.GetComponent<PlayerController>();
+            instance.me = newMe.GetComponent<Player>();
 
         }
             
@@ -99,7 +99,7 @@ public class CharacterManager : MonoBehaviour
                (maxJumpHeight - minJumpHeight) / (jumpVelocity * velocityRatio);
     }
 
-    public static void OnPlayerCrossedLine(PlayerController playerInstance){
+    public static void OnPlayerCrossedLine(Player playerInstance){
         
         switch(playerInstance.Status){
             case PlayerState.me:

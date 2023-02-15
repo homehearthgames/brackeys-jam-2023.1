@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RedLineTrigger : MonoBehaviour
 {
-    public static event Action<PlayerController> PlayerCrossedLine;
+    public static event Action<Player> PlayerCrossedLine;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class RedLineTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         //Debug.Log("Hello?");
         if(PlayerCrossedLine!=null && other.gameObject.CompareTag("Player")){
-            PlayerCrossedLine.Invoke(other.gameObject.GetComponent<PlayerController>());
+            PlayerCrossedLine.Invoke(other.gameObject.GetComponent<Player>());
         }
     }
 

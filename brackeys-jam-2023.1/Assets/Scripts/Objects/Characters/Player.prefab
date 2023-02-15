@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 475635199103130659}
+  - component: {fileID: 8124474356338004906}
   - component: {fileID: 475635199103130657}
   - component: {fileID: 475635199103130662}
   - component: {fileID: 475635199103130658}
@@ -37,6 +38,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8124474356338004906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475635199103130663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cb44b250b193a4284f14b3f2a37813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sr: {fileID: 7530704731723386063}
+  _haloSprite: {fileID: 6708304294028504366}
+  _pc: {fileID: 475635199103130657}
+  _status: 0
+  spriteArray:
+  - {fileID: 994298724, guid: 2d096949d3e778b448ba690dd021d8c8, type: 3}
+  - {fileID: 2115485448, guid: 2d096949d3e778b448ba690dd021d8c8, type: 3}
+  - {fileID: 1079690635, guid: 2d096949d3e778b448ba690dd021d8c8, type: 3}
 --- !u!114 &475635199103130657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,23 +70,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ebe6ad19a63fc41aeb9ff355de4a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sr: {fileID: 7530704731723386063}
-  _haloSprite: {fileID: 6708304294028504366}
+  _player: {fileID: 8124474356338004906}
   _speed: 6
   _maxJumpHeight: 3
   jumpCutOff: 2
-  maxHeight: 0
   isJumping: 0
   feetPos: {fileID: 475635199659894421}
   checkRadius: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  _status: 0
-  spriteArray:
-  - {fileID: 495576470, guid: 6da1f2161618a75489c00f7811038904, type: 3}
-  - {fileID: -598344283, guid: 6da1f2161618a75489c00f7811038904, type: 3}
-  - {fileID: 936575411, guid: 6da1f2161618a75489c00f7811038904, type: 3}
 --- !u!50 &475635199103130662
 Rigidbody2D:
   serializedVersion: 4

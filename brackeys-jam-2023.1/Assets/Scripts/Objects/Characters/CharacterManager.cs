@@ -174,4 +174,18 @@ public class CharacterManager : MonoBehaviour
         // playerInstance.FlipY();
         //Debug.Log($"Player {playerInstance.name} crossed the RedLine. New State: {playerInstance.Status}");
     }
+
+    public static Vector3 GetOppositePos(Vector3 pos){
+        // Check if pos is above the line at y=-0.5
+        if (pos.y >= -0.5f)
+        {
+            return new Vector3(pos.x, -pos.y - 1f,0);
+        }
+        // pos is below the line at y=-0.5
+        else
+        {
+            return new Vector3(pos.x, -pos.y + 1f,0);
+        }
+    }
+
 }

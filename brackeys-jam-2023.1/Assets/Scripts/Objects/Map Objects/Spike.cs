@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static CharacterManager;
 
 public class Spike : MonoBehaviour
 {
     [SerializeField] private Transform _respawnPosition;
+    [SerializeField] private bool ManualPosition = false;
+    [SerializeField] private Sprite[] spriteArray;
+    [SerializeField]private SpriteRenderer _sprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        LoadSprite();
+        if(!ManualPosition){
+        LocateSpawnPointToOtherSide();
+        }
     }
 
     // Update is called once per frame
@@ -17,7 +25,7 @@ public class Spike : MonoBehaviour
     {
         
     }
-
+    
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
@@ -28,7 +36,25 @@ public class Spike : MonoBehaviour
                 MeDies();
                 player.transform.position = _respawnPosition.position;
                 player.resetVelocity();
+            }else if(player._status == Player.PlayerState.soul){
+                SoulDies();
+                player.transform.position = _respawnPosition.position;
+                player.resetVelocity();
             }
         }
+    }
+
+    
+    public void LocateSpawnPointToOtherSide(){
+        Vector3 pos = CharacterManager.GetOppositePos(transform.position);
+        _respawnPosition.position = pos;
+    }
+
+    public void LoadSprite(){
+        if (transform.position.y>=-0.5){
+            _sprite.sprite = spriteArray[0];
+            return;
+        }
+        _sprite.sprite = spriteArray[1];
     }
 }

@@ -138,7 +138,7 @@ public class CharacterManager : MonoBehaviour
                 SoulDies();
                 break;
             default:
-                
+                Destroy(playerInstance.gameObject);
             break;
         }
         playerInstance.FlipY();

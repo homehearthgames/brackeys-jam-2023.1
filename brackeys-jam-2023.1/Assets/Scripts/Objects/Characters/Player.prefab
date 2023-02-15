@@ -73,7 +73,7 @@ MonoBehaviour:
   _player: {fileID: 8124474356338004906}
   _gd: {fileID: 6304155534837271808}
   _speed: 6
-  _maxJumpHeight: 3
+  _maxJumpHeight: 2
   _jumpCutOff: 2
   isJumping: 0
   isGrounded: 0

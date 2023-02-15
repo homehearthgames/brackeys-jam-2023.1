@@ -20,6 +20,10 @@ public class RedLineTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         //Debug.Log("Hello?");
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
         if(PlayerCrossedLine!=null && other.gameObject.CompareTag("Player")){
             PlayerCrossedLine.Invoke(other.gameObject.GetComponent<Player>());
         }

@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
             _rb.gravityScale = gravityScale * gravityMultiplier;
         }
         */
+        
         //the gravity scale now depends on the player status. 
         switch(_player.Status){
             case PlayerState.me:
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
                 }
             break;
         }
+        
 
     }
 

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Player _player;
+    [SerializeField] private GroundDetection _gd;
     private Rigidbody2D _rb;
 
     [Header("Speed Setting")]
@@ -24,11 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool jumpButtonPress;
     public bool isJumping = false;
     private float gravityMultiplier = 1.0f;
-    private bool isGrounded = false;
-    public bool IsGrounded{get{return isGrounded;}}
-    [SerializeField] private Transform feetPos;
-    [SerializeField] private float checkRadius;
-    [SerializeField] private LayerMask whatIsGround;
+    public bool isGrounded = false;
+    // public bool IsGrounded{get{return isGrounded;}}
 
     #endregion
 
@@ -83,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     private void GatherInput()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        // isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
         
         // Horizontal moevment
         // Get horizontal input direction and jump input from input manager
@@ -97,6 +95,7 @@ public class PlayerController : MonoBehaviour
             jumpButtonDown = Input.GetButtonDown("Jump");
             jumpButtonUp = Input.GetButtonUp("Jump");
             jumpButtonPress = Input.GetButton("Jump");
+            isGrounded = _gd.GetOnGround();
         }
         else
         {
@@ -115,6 +114,7 @@ public class PlayerController : MonoBehaviour
         if(jumpButtonDown && isGrounded)
         {
             isJumping = true;
+            isGrounded = false;
             _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
         }
 

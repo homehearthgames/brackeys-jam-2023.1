@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private GroundDetection _gd;
     private Rigidbody2D _rb;
+    private AudioManager audioManager;
 
     [Header("Speed Setting")]
     [SerializeField] private float _speed = 5f;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = AudioManager.instance;
         // Calculate jump force
         _maxJumpHeight += 0.5f;
 
@@ -169,6 +171,8 @@ public class PlayerController : MonoBehaviour
         {
             // Jump
             _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
+            audioManager.PlaySound("Jump");
+
             desireJump = false;
         }
 

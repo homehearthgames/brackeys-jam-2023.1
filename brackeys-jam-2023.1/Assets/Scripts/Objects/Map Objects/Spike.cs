@@ -57,7 +57,7 @@ public class Spike : MonoBehaviour
         }
         _sprite.sprite = spriteArray[1];
         Quaternion currentRotation = _sprite.gameObject.transform.rotation;
-        Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 180);
+        Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z+180);
         _sprite.gameObject.transform.rotation = newRotation;
     }
 }

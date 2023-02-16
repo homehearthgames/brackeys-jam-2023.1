@@ -197,6 +197,10 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = Vector2.zero;
     }
 
+    public void RevertVelocity()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x, -_rb.velocity.y);
+    }
 
     private bool aboveRedLine()
     {

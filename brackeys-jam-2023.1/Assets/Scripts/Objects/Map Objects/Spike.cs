@@ -35,11 +35,11 @@ public class Spike : MonoBehaviour
             {
                 MeDies();
                 player.transform.position = _respawnPosition.position;
-                player.resetVelocity();
+                player.ResetVelocity();
             }else if(player._status == Player.PlayerState.soul){
                 SoulDies();
                 player.transform.position = _respawnPosition.position;
-                player.resetVelocity();
+                player.ResetVelocity();
             }
         }
     }

@@ -53,6 +53,8 @@ MonoBehaviour:
   _sr: {fileID: 7530704731723386063}
   _haloSprite: {fileID: 6708304294028504366}
   _pc: {fileID: 475635199103130657}
+  _landingParticle: {fileID: 5392854575355583245, guid: b1a5f320b5928cc439ec029c6f01644c, type: 3}
+  _feetPos: {x: 0, y: -0.5, z: 0}
   _active: 1
   _status: 0
   spriteArray:

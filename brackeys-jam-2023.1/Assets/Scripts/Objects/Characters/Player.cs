@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PlayerController _pc;
 
+    [Header("Particle Systems")]
+    [SerializeField] private ParticleSystem _landingParticle;
+    [SerializeField] private Vector3 _feetPos;
+
     // PlayerState related
     public enum PlayerState
     {
@@ -53,16 +57,22 @@ public class Player : MonoBehaviour
         PlayerCrossedLine -= OnPlayerCrossedLine;
     }
 
-    public void resetVelocity()
+    public void GenerateLandingParticles()
     {
-        _pc.resetVelocity();
+        ParticleSystem landingParticle = Instantiate(_landingParticle, transform.position + _feetPos, Quaternion.identity);
+        landingParticle.Play();
+    }
+
+    public void ResetVelocity()
+    {
+        _pc.ResetVelocity();
     }
 
     public void FlipY(){
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);
     }
 
-    public  void FlipX(){
+    public void FlipX(){
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
     }
 

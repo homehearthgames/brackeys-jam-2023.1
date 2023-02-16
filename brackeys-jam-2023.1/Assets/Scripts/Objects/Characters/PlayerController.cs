@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private float gravityScale;
     
     private bool jumpButtonPress;
+    private bool desireJump;
     public bool isJumping = false;
     private float gravityMultiplier = 1.0f;
     public bool isGrounded = false;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CalcGravity();
+        GroundCheck();
         GatherInput();
     }
 
@@ -101,6 +103,17 @@ public class PlayerController : MonoBehaviour
         return direction;
     }
 
+    public void GroundCheck()
+    {
+        bool newGrounded = _gd.GetOnGround();
+        if(isGrounded != newGrounded && !isJumping && newGrounded)
+        {
+            // Character landed
+            _player.GenerateLandingParticles();
+        }
+        isGrounded = newGrounded;
+    }
+
     private void GatherInput()
     {
         // isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
@@ -117,7 +130,6 @@ public class PlayerController : MonoBehaviour
             jumpButtonDown = Input.GetButtonDown("Jump");
             jumpButtonUp = Input.GetButtonUp("Jump");
             jumpButtonPress = Input.GetButton("Jump");
-            isGrounded = _gd.GetOnGround();
         }
         else
         {
@@ -137,7 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = true;
             isGrounded = false;
-            _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
+            desireJump = true;
         }
 
         if(!jumpButtonPress && isGrounded)
@@ -153,6 +165,14 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if(desireJump)
+        {
+            // Jump
+            _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
+            desireJump = false;
+        }
+
+        // Jumping mid-air
         if((_rb.velocity.y > 0.01f && aboveRedLine()) || (_rb.velocity.y < -0.01f && !aboveRedLine()))
         {
             if(isJumping)
@@ -192,7 +212,7 @@ public class PlayerController : MonoBehaviour
         maxJumpForce = CharacterManager.CalculateJumpForce(Physics2D.gravity.magnitude * _rb.gravityScale, _maxJumpHeight);
     }
 
-    public void resetVelocity()
+    public void ResetVelocity()
     {
         _rb.velocity = Vector2.zero;
     }

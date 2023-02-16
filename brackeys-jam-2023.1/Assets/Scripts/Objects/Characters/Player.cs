@@ -67,6 +67,9 @@ public class Player : MonoBehaviour
     {
         _pc.ResetVelocity();
     }
+    public void RevertVelocity(){
+        _pc.RevertVelocity();
+    }
 
     public void FlipY(){
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y*-1, gameObject.transform.localScale.z);

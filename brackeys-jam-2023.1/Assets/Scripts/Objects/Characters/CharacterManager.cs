@@ -19,6 +19,10 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject playerPrefab;
 
+    [SerializeField] private GameObject stars;
+    private int totalStars;
+    private int collectedStars = 0;
+
     private AudioManager audioManager;
     
     void Awake()
@@ -57,6 +61,9 @@ public class CharacterManager : MonoBehaviour
         audioManager = AudioManager.instance;
 
         UpdateBodyCountText();
+
+        // Init Collectables related
+        totalStars = stars.transform.childCount;
     }
 
     void Update()
@@ -194,6 +201,19 @@ public class CharacterManager : MonoBehaviour
     public void UpdateBodyCountText()
     {
         bodyCountText.text = string.Format("x {0} / {1}", bodyCount, maxBody);
+    }
+
+    public void CollectStar()
+    {
+        collectedStars += 1;
+        if(collectedStars == totalStars)
+        {
+            // Do something when all gets collected
+        }
+        if(collectedStars > totalStars)
+        {
+            Debug.LogError("Not all stars in Scene " + SceneManager.GetActiveScene().name + " are in stars GameObject!!!");
+        }
     }
 
     private void OnDestroy() {

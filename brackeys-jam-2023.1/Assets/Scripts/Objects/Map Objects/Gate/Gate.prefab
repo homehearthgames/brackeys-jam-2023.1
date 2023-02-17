@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5058118127235996220}
   - component: {fileID: 5058118127235996222}
   - component: {fileID: 5058118127235996221}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 5058118127345574894}
   - component: {fileID: 3280604792222141800}
   - component: {fileID: 4825355223809233372}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

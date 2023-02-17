@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
         {
             GameObject soundObject = new GameObject("Sound_" + i + "_" + sounds[i].soundName);
             sounds[i].SetSource(soundObject.AddComponent<AudioSource>());
+            soundObject.transform.parent = gameObject.transform;
         }
 
         // Play background music on start

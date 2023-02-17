@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5058118127235996222}
   - component: {fileID: 5058118127235996221}
   m_Layer: 0
-  m_Name: DoorButton
+  m_Name: GateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,15 +76,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1483931540, guid: c09c3c2a599737e468110d74a218b51f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &5058118127235996220
@@ -104,14 +104,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.375}
+    newSize: {x: 1, y: 0.375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.38}
   m_EdgeRadius: 0
 --- !u!50 &5058118127235996222
 Rigidbody2D:
@@ -146,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4e0e8e243380b48b2a6fc3fb2f2eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _door: {fileID: 5058118127345574894}
+  _gate: {fileID: 5058118127345574894}
   _sr: {fileID: 5058118127235996223}
-  buttonUp: {fileID: 0}
-  buttonDown: {fileID: 0}
+  buttonUp: {fileID: 1483931540, guid: c09c3c2a599737e468110d74a218b51f, type: 3}
+  buttonDown: {fileID: 471462388, guid: c09c3c2a599737e468110d74a218b51f, type: 3}
   _active: 0
 --- !u!1 &5058118127345574895
 GameObject:
@@ -163,8 +163,10 @@ GameObject:
   - component: {fileID: 5058118127345574896}
   - component: {fileID: 5058118127345574897}
   - component: {fileID: 5058118127345574894}
+  - component: {fileID: 3280604792222141800}
+  - component: {fileID: 4825355223809233372}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,15 +229,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 785563171, guid: ed3f39032688f2346a560f0fe357ec43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &5058118127345574897
@@ -255,14 +257,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2.1}
   m_EdgeRadius: 0
 --- !u!114 &5058118127345574894
 MonoBehaviour:
@@ -277,3 +279,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coll: {fileID: 5058118127345574897}
+--- !u!95 &3280604792222141800
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058118127345574895}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c80760fc3992aa34181d379b611d999a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!111 &4825355223809233372
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058118127345574895}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

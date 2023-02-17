@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorButton : MonoBehaviour
+public class GateButton : MonoBehaviour
 {
-    [SerializeField] private Door _door;
+    [SerializeField] private Gate _gate;
 
     [Header("Sprite Related")]
     [SerializeField] private SpriteRenderer _sr;
+    private AudioManager audioManager;
+
     [SerializeField] private Sprite buttonUp;
     [SerializeField] private Sprite buttonDown;
 
@@ -21,16 +23,12 @@ public class DoorButton : MonoBehaviour
     {
         numObjectOnTop = 0;
 
-        if(_door == null)
+        if(_gate == null)
         {
-            _door.gameObject.GetComponentInParent<Door>();
+            _gate.gameObject.GetComponentInParent<Gate>();
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioManager = AudioManager.instance;
     }
 
     private void SetActive(bool newActive)
@@ -44,12 +42,14 @@ public class DoorButton : MonoBehaviour
         if(newActive == true)
         {
             _sr.sprite = buttonDown;
-            _door.Open();
+            audioManager.PlaySound("Button Press");
+            _gate.AnimateOpen();
         }
         else
         {
-            _sr.sprite = buttonUp;
-            _door.Close();
+            _sr.sprite = buttonUp; 
+            audioManager.PlaySound("Button Release");
+            _gate.AnimateClose();
         }
     }
 

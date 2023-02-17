@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static CharacterManager;
+using static TileManager;
 
 public class Spike : MapObject
 {
@@ -29,17 +30,39 @@ public class Spike : MapObject
             if(player._status == Player.PlayerState.me)
             {
                 MeDies();
-                player.transform.position = _respawnPosition.position;
-                player.ResetVelocity();
+                if (CanTeleport()){
+                    player.transform.position = _respawnPosition.position;
+                    player.ResetVelocity();
+                }else{
+                    player.transform.position = _respawnPosition.position;
+                    SoulDies();
+                    BodyDies(player);
+                }
+                
+
             }else if(player._status == Player.PlayerState.soul){
                 SoulDies();
-                player.transform.position = _respawnPosition.position;
-                player.ResetVelocity();
+                if (CanTeleport()){   
+                    player.transform.position = _respawnPosition.position;
+                    player.ResetVelocity();
+                }
+                
             }
         }
     }
 
+
+
     
+    
+    private bool CanTeleport(){
+        if (TileManager.HasTile(_respawnPosition.position))
+        {
+            return false;
+        }
+        return true;
+    }
+
     public void LocateSpawnPointToOtherSide(){
         Vector3 pos = CharacterManager.GetOppositePos(transform.position);
         _respawnPosition.position = pos;

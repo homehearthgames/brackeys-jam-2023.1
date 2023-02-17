@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
 
     private bool aboveRedLine()
     {
-        return transform.position.y >= -0.5;
+        return transform.position.y >= -0.0f;
     }
 
     #endregion

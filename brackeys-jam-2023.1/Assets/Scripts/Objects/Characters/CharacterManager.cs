@@ -258,14 +258,16 @@ public class CharacterManager : MonoBehaviour
 
     public static Vector3 GetOppositePos(Vector3 pos){
         // Check if pos is above the line at y=-0.5
-        if (pos.y >= -0.5f)
+        if (pos.y >= -0.0f)
         {
-            return new Vector3(pos.x, -pos.y - 1f,0);
+            //return new Vector3(pos.x, -pos.y - 1f,0);
+            return new Vector3(pos.x, -pos.y ,0);
         }
         // pos is below the line at y=-0.5
         else
         {
-            return new Vector3(pos.x, -pos.y + 1f,0);
+            return new Vector3(pos.x, -pos.y ,0);
+            //return new Vector3(pos.x, -pos.y + 1f,0);
         }
     }
 

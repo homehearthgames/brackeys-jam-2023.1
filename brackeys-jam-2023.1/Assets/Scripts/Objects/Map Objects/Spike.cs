@@ -4,26 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using static CharacterManager;
 
-public class Spike : MonoBehaviour
+public class Spike : MapObject
 {
     [SerializeField] private Transform _respawnPosition;
     [SerializeField] private bool ManualPosition = false;
-    [SerializeField] private Sprite[] spriteArray;
-    [SerializeField]private SpriteRenderer _sprite;
+    //[SerializeField] private Sprite[] spriteArray;
+    //[SerializeField]private SpriteRenderer _sprite;
 
     // Start is called before the first frame update
-    void Start()
+    override protected void Start()
     {
-        LoadSprite();
+        //LoadSprite();
+        base.Start();
         if(!ManualPosition){
         LocateSpawnPointToOtherSide();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     public void OnTriggerEnter2D(Collider2D other)
@@ -49,7 +44,7 @@ public class Spike : MonoBehaviour
         Vector3 pos = CharacterManager.GetOppositePos(transform.position);
         _respawnPosition.position = pos;
     }
-
+    /*
     public void LoadSprite(){
         if (transform.position.y>=-0.5){
             _sprite.sprite = spriteArray[0];
@@ -60,4 +55,5 @@ public class Spike : MonoBehaviour
         Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z+180);
         _sprite.gameObject.transform.rotation = newRotation;
     }
+    */
 }

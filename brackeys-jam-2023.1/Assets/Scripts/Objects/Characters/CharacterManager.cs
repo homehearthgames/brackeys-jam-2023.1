@@ -10,7 +10,7 @@ public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
 
-    [SerializeField] private Player me;
+    [SerializeField] public Player me;
     [SerializeField] private Player soul;
     [SerializeField] private int maxBody = 3;
     private LinkedList<Player> bodyList = new LinkedList<Player>();

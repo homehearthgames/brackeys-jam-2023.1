@@ -354,6 +354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
 --- !u!1001 &125718122
@@ -808,7 +812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237077519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.12, y: 3.37, z: 0.67136663}
+  m_LocalPosition: {x: -12.12, y: 3.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23929,6 +23933,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2036501829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1673118644268592222, guid: 392d14d8b41b4bb45a7d101b734883b8, type: 3}
+  m_PrefabInstance: {fileID: 1673118643906783527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2036501831
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036501829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a43f50889f8190b43a5a1d61fdf26ca6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2036501832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036501829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca45add8731718459a4bdbc82b4ece4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2049074621 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 475635199103130659, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
@@ -24039,7 +24080,7 @@ RectTransform:
   m_Children:
   - {fileID: 1680130994}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

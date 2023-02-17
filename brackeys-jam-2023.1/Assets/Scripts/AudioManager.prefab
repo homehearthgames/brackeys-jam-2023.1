@@ -51,15 +51,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - soundName: UpMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: af2543d3a9ea08844b23b42e018dfa64, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
   - soundName: DownMusic
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: 5114845683d00834899169ef1fa0d836, type: 3}
+    volume: 0
     pitch: 1
-    loop: 0
+    loop: 1
   - soundName: 
     clip: {fileID: 0}
     volume: 1

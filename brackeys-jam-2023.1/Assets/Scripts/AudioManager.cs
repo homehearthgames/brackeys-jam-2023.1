@@ -33,7 +33,8 @@ public class AudioManager : MonoBehaviour
         // Play background music on start
         // Potentially play 2 tracks of music and change one volume to 0
 
-        // PlaySound("Background1");
+        PlaySound("UpMusic");
+        PlaySound("DownMusic");
     }
 
     public void PlaySound(string name)

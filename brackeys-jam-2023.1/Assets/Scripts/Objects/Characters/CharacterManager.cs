@@ -18,6 +18,8 @@ public class CharacterManager : MonoBehaviour
     private int bodyCount = 0; // bodyCount == bodies.ToArray().Length
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject playerPrefab;
+
+    private AudioManager audioManager;
     
     void Awake()
     {
@@ -52,6 +54,8 @@ public class CharacterManager : MonoBehaviour
             Debug.LogError("Max Body count in " + SceneManager.GetActiveScene().name + " is negative!!!");
         }
 
+        audioManager = AudioManager.instance;
+
         UpdateBodyCountText();
     }
 
@@ -68,15 +72,33 @@ public class CharacterManager : MonoBehaviour
         {
             if(Input.GetButtonDown("MeSwitch"))
             {
-                me._active = true;
-                soul._active = false;
+                SwitchMe();
             } 
             else if(Input.GetButtonDown("SoulSwitch"))
             {
-                me._active = false;
-                soul._active = true;
+                SwitchSoul();
             }
         }
+    }
+
+    public void SwitchMe()
+    {
+        // Switching to Me
+        me._active = true;
+        soul._active = false;
+
+        audioManager.ChangeVolume("UpMusic", 1f);
+        audioManager.ChangeVolume("DownMusic", 0f);
+    }
+
+    public void SwitchSoul()
+    {
+        // Switching to soul
+        me._active = false;
+        soul._active = true;
+
+        audioManager.ChangeVolume("UpMusic", 0f);
+        audioManager.ChangeVolume("DownMusic", 1f);
     }
 
     // Precondition: Me doesn't exist in the current level
@@ -132,6 +154,8 @@ public class CharacterManager : MonoBehaviour
         instance.me = null;
         // Call SpawnMe()
         SpawnMe(instance.spawnPoint.position);
+
+        instance.SwitchSoul();
     }
 
     public static void SoulDies()
@@ -141,8 +165,7 @@ public class CharacterManager : MonoBehaviour
         instance.soul.gameObject.layer = LayerMask.NameToLayer("Ground");
         instance.soul.FlipY();
         // set active to false and pass the active to Me
-        instance.soul._active = false;
-        instance.me._active = true;
+        instance.SwitchMe();
         // add body into bodies
         instance.bodyList.AddLast(instance.soul);
         instance.bodyCount += 1;

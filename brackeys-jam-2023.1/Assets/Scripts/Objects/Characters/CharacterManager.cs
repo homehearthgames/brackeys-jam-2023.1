@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 using static RedLineTrigger;
 using static Player;
 
@@ -13,6 +14,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private Player soul;
     [SerializeField] private int maxBody = 3;
     private LinkedList<Player> bodyList = new LinkedList<Player>();
+    [SerializeField] private TMP_Text bodyCountText;
     private int bodyCount = 0; // bodyCount == bodies.ToArray().Length
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject playerPrefab;
@@ -49,6 +51,8 @@ public class CharacterManager : MonoBehaviour
         {
             Debug.LogError("Max Body count in " + SceneManager.GetActiveScene().name + " is negative!!!");
         }
+
+        UpdateBodyCountText();
     }
 
     void Update()
@@ -142,6 +146,7 @@ public class CharacterManager : MonoBehaviour
         // add body into bodies
         instance.bodyList.AddLast(instance.soul);
         instance.bodyCount += 1;
+        instance.UpdateBodyCountText();
         if(instance.bodyCount > instance.maxBody)
         {
             // Destroy the first body
@@ -159,7 +164,13 @@ public class CharacterManager : MonoBehaviour
             Debug.LogError("Error: body " + body.name + " not found in bodyList!");
         }
         instance.bodyCount -= 1;
+        instance.UpdateBodyCountText();
         Destroy(body.gameObject);
+    }
+
+    public void UpdateBodyCountText()
+    {
+        bodyCountText.text = string.Format("x {0} / {1}", bodyCount, maxBody);
     }
 
     private void OnDestroy() {

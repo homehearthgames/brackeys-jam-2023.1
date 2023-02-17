@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static RedLineTrigger;
 using static Player;
 
@@ -10,6 +11,9 @@ public class CharacterManager : MonoBehaviour
 
     [SerializeField] private Player me;
     [SerializeField] private Player soul;
+    [SerializeField] private int maxBody = 3;
+    private LinkedList<Player> bodyList = new LinkedList<Player>();
+    private int bodyCount = 0; // bodyCount == bodies.ToArray().Length
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject playerPrefab;
     
@@ -40,6 +44,10 @@ public class CharacterManager : MonoBehaviour
         if(me == null && soul == null)
         {
             Debug.LogWarning("The initial Me or Soul is missing or not set in inspector");
+        }
+        if(maxBody < 0)
+        {
+            Debug.LogError("Max Body count in " + SceneManager.GetActiveScene().name + " is negative!!!");
         }
     }
 
@@ -131,8 +139,27 @@ public class CharacterManager : MonoBehaviour
         // set active to false and pass the active to Me
         instance.soul._active = false;
         instance.me._active = true;
+        // add body into bodies
+        instance.bodyList.AddLast(instance.soul);
+        instance.bodyCount += 1;
+        if(instance.bodyCount > instance.maxBody)
+        {
+            // Destroy the first body
+            LinkedListNode<Player> first = instance.bodyList.First;
+            BodyDies(first.Value);
+        }
         // set soul = null
         instance.soul = null;
+    }
+    
+    public static void BodyDies(Player body)
+    {
+        if(!instance.bodyList.Remove(body))
+        {
+            Debug.LogError("Error: body " + body.name + " not found in bodyList!");
+        }
+        instance.bodyCount -= 1;
+        Destroy(body.gameObject);
     }
 
     private void OnDestroy() {
@@ -168,7 +195,7 @@ public class CharacterManager : MonoBehaviour
                 SoulDies();
                 break;
             default:
-                Destroy(playerInstance.gameObject);
+                BodyDies(playerInstance);
             break;
         }
         // playerInstance.FlipY();

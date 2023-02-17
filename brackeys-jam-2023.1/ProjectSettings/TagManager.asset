@@ -53,3 +53,6 @@ TagManager:
   - name: Hazards
     uniqueID: 3065589527
     locked: 0
+  - name: Platforms
+    uniqueID: 3434226021
+    locked: 0

@@ -45,6 +45,8 @@ public class Spike : MapObject
                 if (CanTeleport()){   
                     player.transform.position = _respawnPosition.position;
                     player.ResetVelocity();
+                }else{
+                    BodyDies(player);
                 }
                 
             }

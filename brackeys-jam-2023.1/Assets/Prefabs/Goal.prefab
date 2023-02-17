@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2030461707170136339}
   - component: {fileID: 2030461707170136338}
   - component: {fileID: 4481755166379902892}
+  - component: {fileID: -2573231943186961236}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-2573231943186961236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030461707170136348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41306b515afef674a9b5dfbeb053e57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteArray:
+  - {fileID: -1108340454, guid: b65d425b8f5944e4aa992fc0b460d496, type: 3}
+  _sprite: {fileID: 2030461707170136338}

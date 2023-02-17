@@ -45,7 +45,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - soundName: MenuMusic
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: UpMusic
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: DownMusic
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
   - soundName: 
     clip: {fileID: 0}
     volume: 1
     pitch: 1
+    loop: 0
+  - soundName: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0

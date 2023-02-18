@@ -1623,8 +1623,9 @@ GameObject:
   - component: {fileID: 895341300}
   - component: {fileID: 895341299}
   - component: {fileID: 895341298}
+  - component: {fileID: 895341302}
   m_Layer: 5
-  m_Name: UI
+  m_Name: LevelSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1713,6 +1714,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &895341302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895341297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f61682e490dea644820f628b339f611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &959770398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3298,7 +3311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4142349553878103247, guid: c2032bb8abcf9714da7a83b876daeb93, type: 3}
       propertyPath: m_Name
-      value: Level
+      value: Tutorial1Scene
       objectReference: {fileID: 0}
     - target: {fileID: 4743041545628017334, guid: c2032bb8abcf9714da7a83b876daeb93, type: 3}
       propertyPath: m_Pivot.x

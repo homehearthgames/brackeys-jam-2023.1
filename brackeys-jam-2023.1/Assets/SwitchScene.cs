@@ -20,5 +20,10 @@ public class SwitchScene : MonoBehaviour
     public void SwitchToNextScene(string destinationScene)
     {
         SceneManager.LoadScene(destinationScene);
+        GameManager.Instance.currentLevel = destinationScene;
+        if (LevelSelectionController.Instance != null)
+        {
+            gameObject.transform.parent.parent.gameObject.SetActive(false);
+        }
     }
 }

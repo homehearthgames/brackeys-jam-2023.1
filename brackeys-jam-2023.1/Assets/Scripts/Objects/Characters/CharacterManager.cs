@@ -241,6 +241,8 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
+            audioManager.ChangeVolume("UpMusic", 1f);
+            audioManager.ChangeVolume("DownMusic", 0f);
             SceneManager.LoadScene(nextLevelSceneName);
         }
 

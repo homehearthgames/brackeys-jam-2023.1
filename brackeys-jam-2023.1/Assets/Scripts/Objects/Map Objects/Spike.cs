@@ -30,11 +30,12 @@ public class Spike : MapObject
             if(player._status == Player.PlayerState.me)
             {
                 MeDies();
+                player.transform.position = _respawnPosition.position;
                 if (CanTeleport()){
-                    player.transform.position = _respawnPosition.position;
+                    
                     player.ResetVelocity();
                 }else{
-                    player.transform.position = _respawnPosition.position;
+                    //player.transform.position = _respawnPosition.position;
                     SoulDies();
                     BodyDies(player);
                 }
@@ -42,8 +43,9 @@ public class Spike : MapObject
 
             }else if(player._status == Player.PlayerState.soul){
                 SoulDies();
+                player.transform.position = _respawnPosition.position;
                 if (CanTeleport()){   
-                    player.transform.position = _respawnPosition.position;
+                    //player.transform.position = _respawnPosition.position;
                     player.ResetVelocity();
                 }else{
                     BodyDies(player);

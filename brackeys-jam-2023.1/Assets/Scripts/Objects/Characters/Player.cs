@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     // Sprites
     [Header("Sprites Related")]
     [SerializeField] private Sprite[] spriteArray;
+    [SerializeField] private Animator aniamtor;
 
     void Awake()
     {
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     {
         //Triggers the setter function to update Status related changes.
         this.Status = _status;
+        aniamtor = transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -55,6 +57,11 @@ public class Player : MonoBehaviour
     }
     void OnDestroy(){
         PlayerCrossedLine -= OnPlayerCrossedLine;
+    }
+
+    public void Highlight()
+    {
+        aniamtor.SetTrigger("Switch");
     }
 
     public void GenerateLandingParticles()

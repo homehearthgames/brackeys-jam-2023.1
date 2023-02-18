@@ -95,7 +95,13 @@ public class CharacterManager : MonoBehaviour
 
     public void SwitchMe()
     {
-        // Switching to Me
+        // Play animation if swtich active
+        if(!me._active)
+        {
+            me.Highlight();
+        }
+
+        // Set active
         me._active = true;
         soul._active = false;
 
@@ -105,7 +111,13 @@ public class CharacterManager : MonoBehaviour
 
     public void SwitchSoul()
     {
-        // Switching to soul
+        // Play animation if swtich active
+        if(!soul._active)
+        {
+            soul.Highlight();
+        }
+
+        // Set active
         me._active = false;
         soul._active = true;
 

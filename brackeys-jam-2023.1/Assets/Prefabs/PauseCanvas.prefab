@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 111779682842314880}
   - component: {fileID: 111779682842315646}
   - component: {fileID: 111779682842314881}
+  - component: {fileID: 5714976609586057537}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -213,6 +214,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5714976609586057537
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111779682842314883}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d7b0e43dfcdf4c41be4d64df3dbcc7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &111779682901625887
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &111779682901625884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -615,7 +636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &111779683520578115
 RectTransform:
   m_ObjectHideFlags: 0

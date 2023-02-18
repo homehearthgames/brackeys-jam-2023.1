@@ -555,31 +555,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d9bc94e591ff648b998c6caadc4ba2, type: 3}
---- !u!1 &605056196 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2030461707170136348, guid: 89d9bc94e591ff648b998c6caadc4ba2, type: 3}
-  m_PrefabInstance: {fileID: 605056195}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &605056197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605056196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41306b515afef674a9b5dfbeb053e57d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteArray:
-  - {fileID: -1108340454, guid: b65d425b8f5944e4aa992fc0b460d496, type: 3}
-  _sprite: {fileID: 605056198}
---- !u!212 &605056198 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2030461707170136338, guid: 89d9bc94e591ff648b998c6caadc4ba2, type: 3}
-  m_PrefabInstance: {fileID: 605056195}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +717,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 1235049649}
   playerPrefab: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
   stars: {fileID: 1448829896}
+  collectedStars: 0
+  nextLevelSceneName: Tutorial2Scene
 --- !u!4 &687649940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8959614151142953350, guid: c7ea4dc1c5d7bda43829a44fbdac7f2f, type: 3}
@@ -22024,11 +22001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4067609123985395746, guid: 5bd4b323177d23f4c9387bede4bc988c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -135.6
+      value: -135.59998
       objectReference: {fileID: 0}
     - target: {fileID: 4067609123985395746, guid: 5bd4b323177d23f4c9387bede4bc988c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -22.700012
+      value: -22.699951
       objectReference: {fileID: 0}
     - target: {fileID: 4067609123985395746, guid: 5bd4b323177d23f4c9387bede4bc988c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

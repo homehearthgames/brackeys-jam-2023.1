@@ -5,10 +5,12 @@ using static Player;
 
 public class Goal : MapObject
 {
+    private CharacterManager characterManager;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        characterManager = CharacterManager.instance;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,6 +28,7 @@ public class Goal : MapObject
                 // Music things
 
                 // Load next level
+                characterManager.LoadNextLevel();
             }
         }
     }

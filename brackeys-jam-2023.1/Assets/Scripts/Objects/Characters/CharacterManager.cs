@@ -17,11 +17,13 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private TMP_Text bodyCountText;
     private int bodyCount = 0; // bodyCount == bodies.ToArray().Length
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject playerPrefab; 
 
     [SerializeField] private GameObject stars;
     private int totalStars;
     public int collectedStars = 0;
+
+    [SerializeField] private string nextLevelSceneName = "";
 
     private AudioManager audioManager;
     
@@ -213,6 +215,18 @@ public class CharacterManager : MonoBehaviour
         if(collectedStars > totalStars)
         {
             Debug.LogError("Not all stars in Scene " + SceneManager.GetActiveScene().name + " are in stars GameObject!!!");
+        }
+    }
+
+    public void LoadNextLevel()
+    {
+        if(nextLevelSceneName == "")
+        {
+            Debug.LogWarning("Next Level Scene Name is empty. Cannot load next level!");
+        }
+        else
+        {
+            SceneManager.LoadScene(nextLevelSceneName);
         }
     }
 

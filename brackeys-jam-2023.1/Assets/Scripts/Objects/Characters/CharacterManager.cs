@@ -16,13 +16,14 @@ public class CharacterManager : MonoBehaviour
     private LinkedList<Player> bodyList = new LinkedList<Player>();
     [SerializeField] private TMP_Text bodyCountText;
     private int bodyCount = 0; // bodyCount == bodies.ToArray().Length
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private StartPortal spawnPortal;
     [SerializeField] private GameObject playerPrefab; 
 
     [SerializeField] private GameObject stars;
     private int totalStars;
     public int collectedStars = 0;
 
+    [SerializeField] private LevelTransition levelTransition;
     [SerializeField] private string nextLevelSceneName = "";
 
     private AudioManager audioManager;
@@ -164,7 +165,7 @@ public class CharacterManager : MonoBehaviour
         instance.soul = instance.me;
         instance.me = null;
         // Call SpawnMe()
-        SpawnMe(instance.spawnPoint.position);
+        SpawnMe(instance.spawnPortal.transform.position);
 
         instance.SwitchSoul();
     }
@@ -220,6 +221,16 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void OpenSpawnPortal()
+    {
+        spawnPortal.OpenPortal();
+    }
+
+    public void LevelComplete()
+    {
+        levelTransition.StartLoading();
+    }
+
     public void LoadNextLevel()
     {
         string currentLevel = GameManager.Instance.currentLevel;
@@ -243,6 +254,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1f;
             audioManager.ChangeVolume("UpMusic", 1f);
             audioManager.ChangeVolume("DownMusic", 0f);
             SceneManager.LoadScene(nextLevelSceneName);

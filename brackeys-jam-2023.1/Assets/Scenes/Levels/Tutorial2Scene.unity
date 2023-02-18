@@ -803,6 +803,7 @@ MonoBehaviour:
   soul: {fileID: 0}
   maxBody: 3
   bodyCountText: {fileID: 984616400}
+  starCountText: {fileID: 2013473531}
   spawnPortal: {fileID: 3107643619537775553}
   playerPrefab: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
   stars: {fileID: 1448829896}
@@ -23529,7 +23530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 111779683384045031, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
       propertyPath: m_Name
-      value: PauseCanvas
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
@@ -23542,6 +23543,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a7208dc6654ae3439675241ac17fbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2013473531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5846190121657361110, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+  m_PrefabInstance: {fileID: 2013473529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2123839146

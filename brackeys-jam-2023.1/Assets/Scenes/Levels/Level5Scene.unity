@@ -823,6 +823,7 @@ MonoBehaviour:
   soul: {fileID: 0}
   maxBody: 3
   bodyCountText: {fileID: 712886248}
+  starCountText: {fileID: 712886249}
   spawnPortal: {fileID: 3107643619537775553}
   playerPrefab: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
   stars: {fileID: 1448829896}
@@ -1011,6 +1012,17 @@ MonoBehaviour:
 --- !u!114 &712886248 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1198683271390556172, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+  m_PrefabInstance: {fileID: 712886246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &712886249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5846190121657361110, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
   m_PrefabInstance: {fileID: 712886246}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -13336,7 +13348,7 @@ Transform:
   - {fileID: 1348021703}
   - {fileID: 218916130}
   m_Father: {fileID: 2123839147}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291582261
 GameObject:
@@ -23554,7 +23566,7 @@ Transform:
   - {fileID: 1291582262}
   - {fileID: 1448829897}
   m_Father: {fileID: 2123839147}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1885187213
 PrefabInstance:
@@ -23656,10 +23668,10 @@ Transform:
   m_Children:
   - {fileID: 1885187214}
   - {fileID: 4330367045989945263}
-  - {fileID: 687649940}
   - {fileID: 1160968290}
-  - {fileID: 1803022728}
+  - {fileID: 687649940}
   - {fileID: 1820030213}
+  - {fileID: 1803022728}
   - {fileID: 605056199}
   - {fileID: 745861546}
   - {fileID: 728760013}

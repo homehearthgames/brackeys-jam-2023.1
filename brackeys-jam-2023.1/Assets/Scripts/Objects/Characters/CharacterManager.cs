@@ -15,6 +15,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private int maxBody = 3;
     private LinkedList<Player> bodyList = new LinkedList<Player>();
     [SerializeField] private TMP_Text bodyCountText;
+    [SerializeField] private TMP_Text starCountText;
     private int bodyCount = 0; // bodyCount == bodies.ToArray().Length
     [SerializeField] private StartPortal spawnPortal;
     [SerializeField] private GameObject playerPrefab; 
@@ -63,12 +64,14 @@ public class CharacterManager : MonoBehaviour
 
         audioManager = AudioManager.instance;
 
+        totalStars = stars.transform.childCount;
+
         UpdateBodyCountText();
+        UpdateStarCountText();
 
         // Init Collectables related
         audioManager.ChangeVolume("UpMusic", 1f);
         audioManager.ChangeVolume("DownMusic", 0f);
-        totalStars = stars.transform.childCount;
     }
 
     void Update()
@@ -220,9 +223,15 @@ public class CharacterManager : MonoBehaviour
         bodyCountText.text = string.Format("x {0} / {1}", bodyCount, maxBody);
     }
 
+    public void UpdateStarCountText()
+    {
+        starCountText.text = string.Format("x {0} / {1}", collectedStars, totalStars);
+    }
+
     public void CollectStar()
     {
         collectedStars += 1;
+        UpdateStarCountText();
         if(collectedStars == totalStars)
         {
             // Do something when all gets collected

@@ -2004,6 +2004,7 @@ MonoBehaviour:
   soul: {fileID: 0}
   maxBody: 3
   bodyCountText: {fileID: 1765698914}
+  starCountText: {fileID: 1765698915}
   spawnPortal: {fileID: 3107643619682168579}
   playerPrefab: {fileID: 475635199103130663, guid: 2f8b412630412954daeb8c7e59778f6c, type: 3}
   stars: {fileID: 1173137184}
@@ -23721,6 +23722,17 @@ MonoBehaviour:
 --- !u!114 &1765698914 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1198683271390556172, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+  m_PrefabInstance: {fileID: 1765698912}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1765698915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5846190121657361110, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
   m_PrefabInstance: {fileID: 1765698912}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

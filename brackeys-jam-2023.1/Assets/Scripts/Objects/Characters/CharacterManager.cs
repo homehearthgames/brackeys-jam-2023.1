@@ -21,7 +21,7 @@ public class CharacterManager : MonoBehaviour
 
     [SerializeField] private GameObject stars;
     private int totalStars;
-    private int collectedStars = 0;
+    public int collectedStars = 0;
 
     private AudioManager audioManager;
     

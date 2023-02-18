@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [Header("Speed Setting")]
     [SerializeField] private float _speed = 5f;
     private Vector2 inputDirection;
+    private float originalScaleX;
 
     [Header("Jump Settings")]
     // Jump related
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         audioManager = AudioManager.instance;
+        originalScaleX = transform.localScale.x;
         // Calculate jump force
         _maxJumpHeight += 0.5f;
 
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Flip();
         Jump();
         Move();
     }
@@ -137,8 +140,6 @@ public class PlayerController : MonoBehaviour
         {
             jumpButtonPress = false;
         }
-        
-        
         // Horizontal movement
         inputDirection = new Vector2(x, 0);
         if(inputDirection.sqrMagnitude > 1)
@@ -157,6 +158,19 @@ public class PlayerController : MonoBehaviour
         if(!jumpButtonPress && isGrounded)
         {
             isJumping = false;
+        }
+    }
+
+    private void Flip()
+    {
+        float x = inputDirection.x;
+        if(x > 0)
+        {
+            transform.localScale = new Vector3(originalScaleX, transform.localScale.y, transform.localScale.z);
+        }
+        else if (x < 0)
+        {
+            transform.localScale = new Vector3(originalScaleX * -1, transform.localScale.y, transform.localScale.z);
         }
     }
 

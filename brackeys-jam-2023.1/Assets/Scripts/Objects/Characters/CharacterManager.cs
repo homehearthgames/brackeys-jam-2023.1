@@ -65,6 +65,8 @@ public class CharacterManager : MonoBehaviour
         UpdateBodyCountText();
 
         // Init Collectables related
+        audioManager.ChangeVolume("UpMusic", 1f);
+        audioManager.ChangeVolume("DownMusic", 0f);
         totalStars = stars.transform.childCount;
     }
 

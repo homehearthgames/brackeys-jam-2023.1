@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rb;
+    
 
     [SerializeField] private Vector2 _startPoint;
     [SerializeField] private Vector2 _endPoint;
@@ -24,6 +24,7 @@ public class MovingPlatform : MonoBehaviour
 
     void Awake()
     {
+        
         if(_startPoint != (Vector2)transform.position)
         {
             Debug.LogError("Platform \"" + gameObject.name + "\" start point not match with startin transform postiion!");

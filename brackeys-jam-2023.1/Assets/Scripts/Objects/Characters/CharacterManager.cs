@@ -222,6 +222,21 @@ public class CharacterManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        string currentLevel = GameManager.Instance.currentLevel;
+        Debug.Log(currentLevel);
+        LevelSelectionController.Instance.gameObject.SetActive(true);
+        BonusStarHandler[] bonusStarHandlers = FindObjectsOfType<BonusStarHandler>();
+
+        foreach (BonusStarHandler bonusStarHandler in bonusStarHandlers)
+        {
+            if (bonusStarHandler.gameObject.CompareTag("Level") && bonusStarHandler.gameObject.name == currentLevel)
+            {
+                Debug.Log("Setting Stars");
+                bonusStarHandler.numStarsCollected = GameManager.Instance.currentStars;
+            }
+        }
+
+        LevelSelectionController.Instance.gameObject.SetActive(false);
         if(nextLevelSceneName == "")
         {
             Debug.LogWarning("Next Level Scene Name is empty. Cannot load next level!");
@@ -232,7 +247,10 @@ public class CharacterManager : MonoBehaviour
             audioManager.ChangeVolume("DownMusic", 0f);
             SceneManager.LoadScene(nextLevelSceneName);
         }
+
+        GameManager.Instance.currentStars = 0;
     }
+
 
     private void OnDestroy() {
         PlayerCrossedLine-=OnPlayerCrossedLine;

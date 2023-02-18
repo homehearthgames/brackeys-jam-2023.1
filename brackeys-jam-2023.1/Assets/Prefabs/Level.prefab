@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 2396636830940755255}
   - component: {fileID: 8160133898755774211}
   m_Layer: 5
-  m_Name: Star1 (1)
+  m_Name: Star2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,9 +455,10 @@ GameObject:
   - component: {fileID: 4743041545628017334}
   - component: {fileID: 7650001083567317108}
   - component: {fileID: 442491797369213637}
+  - component: {fileID: 8354102787105870241}
   m_Layer: 5
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -506,7 +507,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -525,7 +526,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 6301555379023548554}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -553,6 +554,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93f247422382dc41b22e1233d0e7d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8354102787105870241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142349553878103247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98e07d15f6b52f45a7a8b6059a2a175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numStarsCollected: 0
+  bonusSpriteComplete: {fileID: 21300000, guid: 4f0f10d02a9abda4381a7c8d35425886, type: 3}
+  bonusSpriteIncomplete: {fileID: 21300000, guid: 19f6aa5c70109fa4482ba712681d3bcc, type: 3}
+  bonusImages:
+  - {fileID: 2076535451459962711}
+  - {fileID: 8160133898755774211}
+  - {fileID: 7492385637942302171}
 --- !u!1 &5116828368736881488
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +585,7 @@ GameObject:
   - component: {fileID: 1920133285269494147}
   - component: {fileID: 7492385637942302171}
   m_Layer: 5
-  m_Name: Star1 (2)
+  m_Name: Star3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

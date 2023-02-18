@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     public void GroundCheck()
     {
         bool newGrounded = _gd.GetOnGround();
-        if(isGrounded != newGrounded && !isJumping && newGrounded)
+        if(isGrounded != newGrounded && !isJumping && newGrounded && _player._status != PlayerState.dead)
         {
             // Character landed
             _player.GenerateLandingParticles();

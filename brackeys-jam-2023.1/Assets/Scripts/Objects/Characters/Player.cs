@@ -59,7 +59,12 @@ public class Player : MonoBehaviour
 
     public void GenerateLandingParticles()
     {
-        ParticleSystem landingParticle = Instantiate(_landingParticle, transform.position + _feetPos, Quaternion.identity);
+        ParticleSystem landingParticle = Instantiate(_landingParticle, transform.position + (_feetPos * transform.localScale.y), Quaternion.identity);
+        if(_status == PlayerState.soul)
+        {
+            var sh = landingParticle.shape;
+            sh.scale = new Vector3(sh.scale.x, sh.scale.y, sh.scale.z * -1);
+        }
         landingParticle.Play();
     }
 

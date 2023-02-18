@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Terrain
+  - Level
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Player
   - 
   - 
   - 
@@ -48,6 +49,9 @@ TagManager:
   - name: Ground
     uniqueID: 1601111895
     locked: 0
+  - name: Background
+    uniqueID: 3889556383
+    locked: 0
   - name: Flora
     uniqueID: 3471674615
     locked: 0
@@ -56,4 +60,7 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 3434226021
+    locked: 0
+  - name: Player
+    uniqueID: 1733787363
     locked: 0

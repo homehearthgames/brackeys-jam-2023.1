@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private Collider2D _coll;
+    [SerializeField] private bool isOpened;
     private Animator animator;
     private AudioManager audioManager;
 
@@ -15,11 +16,6 @@ public class Gate : MonoBehaviour
         audioManager = AudioManager.instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void AnimateOpen()
     {

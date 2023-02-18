@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - soundName: MenuMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: af2543d3a9ea08844b23b42e018dfa64, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
   - soundName: DownMusic
-    clip: {fileID: 8300000, guid: 5114845683d00834899169ef1fa0d836, type: 3}
+    clip: {fileID: 8300000, guid: 9c35ab422ee82274e80d7c5f003cd541, type: 3}
     volume: 0
     pitch: 1
     loop: 1

@@ -8,6 +8,8 @@ public class CloudMovement : MonoBehaviour {
     public float maxSpeed;
     public bool moveRight;
 
+    public float deathPosition = 20f;
+
     private float speed;
 
     void Start() {
@@ -23,7 +25,7 @@ public class CloudMovement : MonoBehaviour {
     void Update () {
         transform.Translate(speed * Time.deltaTime, 0f, 0f);
 
-        if (transform.position.x < -12f || transform.position.x > 12f) {
+        if (transform.position.x < -deathPosition || transform.position.x > deathPosition) {
             Destroy(gameObject);
         }
     }

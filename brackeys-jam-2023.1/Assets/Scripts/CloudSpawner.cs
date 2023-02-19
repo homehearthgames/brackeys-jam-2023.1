@@ -10,21 +10,23 @@ public class CloudSpawner : MonoBehaviour {
     public bool spawnOnTop;
     public bool moveRight;
 
+    public float spawnHeight = 15f;
+
     IEnumerator Start () {
         while (true) {
-            float randomY = Random.Range(-3f, 3f);
+            float randomY = Random.Range(-spawnHeight, spawnHeight);
             if (spawnOnTop) {
-                randomY = Random.Range(0f, 3f);
+                randomY = Random.Range(0f, 15);
             } else {
-                randomY = Random.Range(-3f, 0f);
+                randomY = Random.Range(-spawnHeight, 0f);
             }
             int randomIndex = Random.Range(0, cloudPrefabs.Length);
             GameObject cloudPrefab = cloudPrefabs[randomIndex];
             Vector3 spawnPos;
             if (moveRight) {
-                spawnPos = new Vector3(-10f, randomY, 0f);
+                spawnPos = new Vector3(-spawnHeight, randomY, 0f);
             } else {
-                spawnPos = new Vector3(10f, randomY, 0f);
+                spawnPos = new Vector3(spawnHeight, randomY, 0f);
             }
             GameObject newCloud = Instantiate(cloudPrefab, spawnPos, Quaternion.identity);
             CloudMovement cloudMovement = newCloud.GetComponent<CloudMovement>();

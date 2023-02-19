@@ -1566,6 +1566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CloudSpawnerTop
       objectReference: {fileID: 0}
+    - target: {fileID: 2883188251363724237, guid: 9fc3e44ae78dece4e97734dc74235b3c, type: 3}
+      propertyPath: spawnHeight
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc3e44ae78dece4e97734dc74235b3c, type: 3}
 --- !u!1001 &7776137865082266074
@@ -1575,6 +1579,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7776137865008983023, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 4
@@ -1622,11 +1630,11 @@ PrefabInstance:
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[3].m_Data
       value: 
-      objectReference: {fileID: 700574717, guid: a8d39e2318d7ead44a7a091eb0cdd351, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[4].m_Data
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 700574717, guid: a8d39e2318d7ead44a7a091eb0cdd351, type: 3}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[5].m_Data
       value: 
@@ -1677,11 +1685,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[3].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[4].m_RefCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[5].m_RefCount
@@ -1705,7 +1713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_Tiles.Array.data[0].second.m_TileSpriteIndex
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7776137865347459726, guid: 008319aef62ad99438865fb942d0ef51, type: 3}
       propertyPath: m_Tiles.Array.data[1].second.m_TileSpriteIndex
@@ -1795,6 +1803,10 @@ PrefabInstance:
     - target: {fileID: 8408985822646183961, guid: 57c9f0c44b8003f41af20757b5e1fc43, type: 3}
       propertyPath: m_Name
       value: CloudSpawnerBottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408985822646183962, guid: 57c9f0c44b8003f41af20757b5e1fc43, type: 3}
+      propertyPath: spawnHeight
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8408985822646183963, guid: 57c9f0c44b8003f41af20757b5e1fc43, type: 3}
       propertyPath: m_RootOrder

@@ -25,7 +25,7 @@ public class CharacterManager : MonoBehaviour
     public int collectedStars = 0;
 
     [SerializeField] private LevelTransition levelTransition;
-    [SerializeField] private string nextLevelSceneName = "";
+    private string nextLevelSceneName = "";
 
     private AudioManager audioManager;
     
@@ -65,6 +65,26 @@ public class CharacterManager : MonoBehaviour
         audioManager = AudioManager.instance;
 
         totalStars = stars.transform.childCount;
+
+        string[] sceneNamesList = LevelSelectionController.Instance.levelSceneNameList;
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        int sceneIndex = System.Array.IndexOf(sceneNamesList, currentSceneName);
+        Debug.Log(sceneIndex);
+        if(sceneIndex == -1)
+        {
+            Debug.LogWarning("Scene " + currentSceneName + " cannot be found in sceneNamesList under LevelSelectionController!");
+            nextLevelSceneName = "LevelSelectionScene";
+        } 
+        else if(sceneIndex == sceneNamesList.Length - 1)
+        {
+            Debug.LogWarning("Scene " + currentSceneName + " is the last level! Next level is the level selection");
+            nextLevelSceneName = "LevelSelectionScene";
+        }
+        else
+        {
+            nextLevelSceneName = sceneNamesList[sceneIndex + 1];
+            Debug.Log(nextLevelSceneName);
+        }
 
         UpdateBodyCountText();
         UpdateStarCountText();
@@ -290,6 +310,11 @@ public class CharacterManager : MonoBehaviour
             Time.timeScale = 1f;
             audioManager.ChangeVolume("UpMusic", 1f);
             audioManager.ChangeVolume("DownMusic", 0f);
+
+            if(nextLevelSceneName == "LevelSelectionScene")
+            {
+                LevelSelectionController.Instance.gameObject.SetActive(true);
+            }
             SceneManager.LoadScene(nextLevelSceneName);
         }
 

@@ -1409,6 +1409,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f61682e490dea644820f628b339f611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelSceneNameList:
+  - Tutorial1Scene
+  - Level1Scene
+  - Tutorial2Scene
+  - Level2Scene
+  - Level3Scene
+  - Level4Scene
+  - Level5Scene
+  - Level6Scene
+  - Level7Scene
+  - Level10Scene
+  - LevelProbably12Scene
+  - LevelProbably13Scene
 --- !u!1001 &959770398
 PrefabInstance:
   m_ObjectHideFlags: 0

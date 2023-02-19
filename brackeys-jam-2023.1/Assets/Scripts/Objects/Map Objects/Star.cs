@@ -18,7 +18,7 @@ public class Star : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             // Play SFX
-            audioManager.PlaySound("Collect Star");
+            audioManager.PlaySound("Coin");
 
             // Call function in CharacterManager
             characterManager.CollectStar();

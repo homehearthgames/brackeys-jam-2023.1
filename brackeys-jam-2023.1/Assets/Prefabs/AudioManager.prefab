@@ -60,38 +60,28 @@ MonoBehaviour:
     volume: 0
     pitch: 1
     loop: 1
-  - soundName: 
-    clip: {fileID: 0}
+  - soundName: Coin
+    clip: {fileID: 8300000, guid: 6540ada023d0eb64eb3b65caa4d84f8d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - soundName: 
-    clip: {fileID: 0}
+  - soundName: Death
+    clip: {fileID: 8300000, guid: b35b04431f014734ab3e47bd4fae9138, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - soundName: 
-    clip: {fileID: 0}
+  - soundName: Down_to_Up
+    clip: {fileID: 8300000, guid: 45e4e7e463daa0d4097bd3c357e96bd7, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - soundName: 
-    clip: {fileID: 0}
+  - soundName: Up_to_Down
+    clip: {fileID: 8300000, guid: 3afd1275838e944488b8b659272946c4, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - soundName: 
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  - soundName: 
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  - soundName: 
-    clip: {fileID: 0}
+  - soundName: Jump
+    clip: {fileID: 8300000, guid: 7c0f92f642fca1e42b86cac2de1b536e, type: 3}
     volume: 1
     pitch: 1
     loop: 0

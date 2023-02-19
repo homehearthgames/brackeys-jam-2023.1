@@ -108,6 +108,12 @@ public class CharacterManager : MonoBehaviour
         me._active = true;
         soul._active = false;
 
+        // Play switch sound
+        audioManager.PlaySound("Down_to_Up");
+        audioManager.StopSound("Up_to_Down");
+
+        // Change music volume
+
         audioManager.ChangeVolume("UpMusic", 1f);
         audioManager.ChangeVolume("DownMusic", 0f);
     }
@@ -123,6 +129,12 @@ public class CharacterManager : MonoBehaviour
         // Set active
         me._active = false;
         soul._active = true;
+
+        // Play switch sound
+        audioManager.PlaySound("Up_to_Down");
+        audioManager.StopSound("Down_to_Up");
+
+        // Change music volume
 
         audioManager.ChangeVolume("UpMusic", 0f);
         audioManager.ChangeVolume("DownMusic", 1f);

@@ -333,6 +333,7 @@ public class CharacterManager : MonoBehaviour
                 LevelSelectionController.Instance.gameObject.SetActive(true);
             }
             SceneManager.LoadScene(nextLevelSceneName);
+            GameManager.Instance.currentLevel = nextLevelSceneName;
         }
 
         GameManager.Instance.currentStars = 0;

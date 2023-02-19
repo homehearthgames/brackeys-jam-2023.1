@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         PlayerCrossedLine += OnPlayerCrossedLine;
+        aniamtor = transform.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -47,7 +48,6 @@ public class Player : MonoBehaviour
     {
         //Triggers the setter function to update Status related changes.
         this.Status = _status;
-        aniamtor = transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame

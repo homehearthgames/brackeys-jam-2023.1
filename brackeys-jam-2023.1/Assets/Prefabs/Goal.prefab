@@ -122,6 +122,7 @@ MonoBehaviour:
   spriteArray:
   - {fileID: -1108340454, guid: b65d425b8f5944e4aa992fc0b460d496, type: 3}
   _sprite: {fileID: 2030461707170136338}
+  portalCloseParticle: {fileID: 4172076061625353636, guid: 4603e08719139e04780893f053b29acb, type: 3}
 --- !u!61 &1878530762897822922
 BoxCollider2D:
   m_ObjectHideFlags: 0

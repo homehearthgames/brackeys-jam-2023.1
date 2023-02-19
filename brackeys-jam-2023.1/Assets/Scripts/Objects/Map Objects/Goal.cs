@@ -7,6 +7,8 @@ public class Goal : MapObject
 {
     private Animator animator;
     private CharacterManager characterManager;
+
+    [SerializeField] private ParticleSystem portalCloseParticle;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -36,6 +38,8 @@ public class Goal : MapObject
 
     public void PortalClosed()
     {
+        ParticleSystem portalParticle = Instantiate(portalCloseParticle, transform.position, Quaternion.identity, transform); 
+        portalParticle.Play();
         // Resume time
         Time.timeScale = 1f;
         // Load transition

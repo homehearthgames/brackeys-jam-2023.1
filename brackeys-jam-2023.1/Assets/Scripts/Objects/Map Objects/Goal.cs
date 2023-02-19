@@ -26,9 +26,9 @@ public class Goal : MapObject
             {
                 // Level Completed
                 Debug.Log("Level Complete!");
-                // Animation stuffs
-                // Time.timeScale = 0f;
-                // Wait for a second
+                // Play portal sound
+                AudioManager.instance.PlaySound("Portal");
+                // Remove player
                 Destroy(other.gameObject);
                 // Trigger aniamtion
                 animator.SetTrigger("Close");

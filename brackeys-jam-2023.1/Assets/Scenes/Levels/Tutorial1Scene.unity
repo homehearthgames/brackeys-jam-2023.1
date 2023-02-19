@@ -731,7 +731,6 @@ MonoBehaviour:
   stars: {fileID: 1448829896}
   collectedStars: 0
   levelTransition: {fileID: 2031296839}
-  nextLevelSceneName: Tutorial2Scene
 --- !u!4 &687649940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8959614151142953350, guid: c7ea4dc1c5d7bda43829a44fbdac7f2f, type: 3}

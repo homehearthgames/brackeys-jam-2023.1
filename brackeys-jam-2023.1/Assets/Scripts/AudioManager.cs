@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+    public bool isMenuPlaying = false;
     public bool isThemePlaying = false;
 
     [SerializeField] private Sound[] sounds;

@@ -124,3 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c30585acc76a44eb0bc5cf7bc02555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeParticle: {fileID: 4172076061625353636, guid: 969004368c652dd4aaf0581c02743ee6, type: 3}
+  starColor: {r: 1, g: 1, b: 0, a: 0}

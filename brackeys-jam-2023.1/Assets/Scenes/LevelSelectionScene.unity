@@ -1625,11 +1625,11 @@ MonoBehaviour:
   - Tutorial1Scene
   - Level1Scene
   - Level2Scene
+  - TutorialSpikeScene
   - Tutorial2Scene
   - Level3Scene
   - Level4Scene
   - Level5Scene
-  - Level6Scene
   - Level7Scene
   - Level10Scene
   - LevelProbably12Scene

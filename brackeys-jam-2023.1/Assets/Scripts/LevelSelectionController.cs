@@ -6,6 +6,8 @@ public class LevelSelectionController : MonoBehaviour
 {
     
     public static LevelSelectionController Instance { get; private set; }
+
+    public string[] levelSceneNameList;
     
     private void Awake() {
         

@@ -11,8 +11,12 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerController _pc;
 
     [Header("Particle Systems")]
+    private Color meColor = new Color32(153, 230, 95, 255);
+    private Color soulColor = new Color32(42, 47, 78, 255);
+    private Color deadColor = new Color32(146, 161, 185, 255);
     [SerializeField] private ParticleSystem _jumpingParticle;
     [SerializeField] private ParticleSystem _landingParticle;
+    [SerializeField] private ParticleSystem _explodeParticle;
     [SerializeField] private Vector3 _feetPos;
 
     // PlayerState related
@@ -85,6 +89,25 @@ public class Player : MonoBehaviour
             sh.scale = new Vector3(sh.scale.x, sh.scale.y, sh.scale.z * -1);
         }
         landingParticle.Play();
+    }
+
+    public void GenerateExplodeParticles()
+    {
+        ParticleSystem explodeParticles = Instantiate(_explodeParticle, transform.position + (_feetPos * transform.localScale.y), Quaternion.identity);
+        ParticleSystem.MainModule settings = explodeParticles.main;
+        switch(_status)
+        {
+            case PlayerState.me:
+                settings.startColor = meColor;
+                break;
+            case PlayerState.soul:
+                settings.startColor = soulColor;
+                break;
+            default:
+                settings.startColor = deadColor;
+                break;
+        }
+        explodeParticles.Play();
     }
 
     public void ResetVelocity()

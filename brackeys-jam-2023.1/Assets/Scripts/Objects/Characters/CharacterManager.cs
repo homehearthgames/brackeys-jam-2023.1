@@ -201,6 +201,8 @@ public class CharacterManager : MonoBehaviour
 
     public static void MeDies()
     {
+        // Death particle effect
+        instance.me.GenerateExplodeParticles();
         // change state
         instance.me.Status = PlayerState.soul;
         instance.me.FlipY();
@@ -219,6 +221,8 @@ public class CharacterManager : MonoBehaviour
 
     public static void SoulDies()
     {
+        // Death particle effect
+        instance.soul.GenerateExplodeParticles();
         // change state
         instance.soul.Status = PlayerState.dead;
         instance.soul.gameObject.layer = LayerMask.NameToLayer("Ground");
@@ -241,10 +245,13 @@ public class CharacterManager : MonoBehaviour
     
     public static void BodyDies(Player body)
     {
+        body.GenerateExplodeParticles();
         if(!instance.bodyList.Remove(body))
         {
             Debug.LogError("Error: body " + body.name + " not found in bodyList!");
         }
+        // Death particle effect
+
         instance.bodyCount -= 1;
         instance.UpdateBodyCountText();
         Destroy(body.gameObject);

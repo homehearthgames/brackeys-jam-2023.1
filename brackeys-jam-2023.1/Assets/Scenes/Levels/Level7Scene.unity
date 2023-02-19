@@ -2124,7 +2124,6 @@ MonoBehaviour:
   stars: {fileID: 1173137184}
   collectedStars: 0
   levelTransition: {fileID: 1765698913}
-  nextLevelSceneName: 
 --- !u!1001 &630843365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24115,6 +24114,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 111779683384045031, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 559396269063078446, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 559396269063078446, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 559396269063078446, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 139.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889665597999860058, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889665597999860058, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889665597999860058, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062077953128009972, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062077953128009972, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062077953128009972, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 141.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392911615891200896, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392911615891200896, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392911615891200896, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccb2ba211ae047747b1f6f45ef42c003, type: 3}
 --- !u!114 &1765698913 stripped
@@ -25343,7 +25394,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 1.75, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -25393,7 +25444,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 785563171, guid: ed3f39032688f2346a560f0fe357ec43, type: 3}
+  m_Sprite: {fileID: -2038811287, guid: 0e89800b2afe4594da665cb5fdc412d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

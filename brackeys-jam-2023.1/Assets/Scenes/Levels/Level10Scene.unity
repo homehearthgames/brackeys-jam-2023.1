@@ -13610,7 +13610,7 @@ Transform:
   - {fileID: 1348021703}
   - {fileID: 39752101}
   m_Father: {fileID: 2123839147}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1192904234
 PrefabInstance:
@@ -13826,6 +13826,7 @@ GameObject:
   - component: {fileID: 1348021706}
   - component: {fileID: 1348021708}
   - component: {fileID: 1348021707}
+  - component: {fileID: 1348021709}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
@@ -23698,6 +23699,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1348021709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348021702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8066c0d35059e429851ce2349ef387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMap: {fileID: 0}
 --- !u!1 &1448829896
 GameObject:
   m_ObjectHideFlags: 0
@@ -24198,7 +24212,7 @@ Transform:
   - {fileID: 1291582262}
   - {fileID: 1448829897}
   m_Father: {fileID: 2123839147}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1885187213
 PrefabInstance:
@@ -24362,10 +24376,10 @@ Transform:
   m_Children:
   - {fileID: 1885187214}
   - {fileID: 4330367045989945263}
-  - {fileID: 687649940}
   - {fileID: 1160968290}
-  - {fileID: 1803022728}
+  - {fileID: 687649940}
   - {fileID: 1820030213}
+  - {fileID: 1803022728}
   - {fileID: 1788764859}
   - {fileID: 605056199}
   m_Father: {fileID: 0}

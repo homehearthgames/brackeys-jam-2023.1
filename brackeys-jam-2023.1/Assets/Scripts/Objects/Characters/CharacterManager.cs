@@ -215,6 +215,7 @@ public class CharacterManager : MonoBehaviour
         instance.me.FlipY();
         // if soul != null, a soul exists, that soul dies first
         if(instance.soul!=null){
+            instance.soul.FlipY();
             SoulDies();
         }
         // set soul = me, me = null
@@ -233,7 +234,9 @@ public class CharacterManager : MonoBehaviour
         // change state
         instance.soul.Status = PlayerState.dead;
         instance.soul.gameObject.layer = LayerMask.NameToLayer("Ground");
+
         instance.soul.FlipY();
+        
         // set active to false and pass the active to Me
         instance.SwitchMe();
         // add body into bodies

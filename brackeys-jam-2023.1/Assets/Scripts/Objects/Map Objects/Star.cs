@@ -6,6 +6,7 @@ public class Star : MonoBehaviour
 {
     private AudioManager audioManager;
     private CharacterManager characterManager;
+    [SerializeField] private ParticleSystem explodeParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,10 @@ public class Star : MonoBehaviour
         {
             // Play SFX
             audioManager.PlaySound("Coin");
+
+            // Partickle
+            ParticleSystem explodeParticles = Instantiate(explodeParticle, transform.position, Quaternion.identity);
+            explodeParticles.Play();
 
             // Call function in CharacterManager
             characterManager.CollectStar();

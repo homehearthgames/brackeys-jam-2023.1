@@ -53,10 +53,10 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(me == null && soul == null)
-        {
-            Debug.LogWarning("The initial Me or Soul is missing or not set in inspector");
-        }
+        // if(me == null && soul == null)
+        // {
+        //     Debug.LogWarning("The initial Me or Soul is missing or not set in inspector");
+        // }
         if(maxBody < 0)
         {
             Debug.LogError("Max Body count in " + SceneManager.GetActiveScene().name + " is negative!!!");
@@ -64,7 +64,21 @@ public class CharacterManager : MonoBehaviour
 
         audioManager = AudioManager.instance;
 
+        // Init Collectables related
         totalStars = stars.transform.childCount;
+        
+        UpdateBodyCountText();
+        UpdateStarCountText();
+
+        // Init sound related
+        Debug.Log(audioManager.isThemePlaying);
+        if(!audioManager.isThemePlaying)
+        {
+            Debug.Log("Play Theme");
+            audioManager.PlayTheme();
+        }
+        audioManager.MuteSound("UpMusic", false);
+        audioManager.MuteSound("DownMusic", true);
 
         string[] sceneNamesList = LevelSelectionController.Instance.levelSceneNameList;
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -85,13 +99,6 @@ public class CharacterManager : MonoBehaviour
             nextLevelSceneName = sceneNamesList[sceneIndex + 1];
             Debug.Log(nextLevelSceneName);
         }
-
-        UpdateBodyCountText();
-        UpdateStarCountText();
-
-        // Init Collectables related
-        audioManager.ChangeVolume("UpMusic", 1f);
-        audioManager.ChangeVolume("DownMusic", 0f);
     }
 
     void Update()
@@ -134,8 +141,8 @@ public class CharacterManager : MonoBehaviour
 
         // Change music volume
 
-        audioManager.ChangeVolume("UpMusic", 1f);
-        audioManager.ChangeVolume("DownMusic", 0f);
+        audioManager.MuteSound("UpMusic", false);
+        audioManager.MuteSound("DownMusic", true);
     }
 
     public void SwitchSoul()
@@ -156,8 +163,8 @@ public class CharacterManager : MonoBehaviour
 
         // Change music volume
 
-        audioManager.ChangeVolume("UpMusic", 0f);
-        audioManager.ChangeVolume("DownMusic", 1f);
+        audioManager.MuteSound("UpMusic", true);
+        audioManager.MuteSound("DownMusic", false);
     }
 
     // Precondition: Me doesn't exist in the current level
@@ -315,8 +322,8 @@ public class CharacterManager : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
-            audioManager.ChangeVolume("UpMusic", 1f);
-            audioManager.ChangeVolume("DownMusic", 0f);
+            audioManager.MuteSound("UpMusic", false);
+        audioManager.MuteSound("DownMusic", true);
 
             if(nextLevelSceneName == "LevelSelectionScene")
             {

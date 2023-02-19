@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e110a7fdee7d13248a56a0151eebd0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isThemePlaying: 0
   sounds:
   - soundName: MenuMusic
-    clip: {fileID: 8300000, guid: af2543d3a9ea08844b23b42e018dfa64, type: 3}
+    clip: {fileID: 8300000, guid: 94593471a03434341a45f8e4a1cc32ea, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
   - soundName: UpMusic
     clip: {fileID: 8300000, guid: af2543d3a9ea08844b23b42e018dfa64, type: 3}
     volume: 1
@@ -57,7 +58,7 @@ MonoBehaviour:
     loop: 1
   - soundName: DownMusic
     clip: {fileID: 8300000, guid: 9c35ab422ee82274e80d7c5f003cd541, type: 3}
-    volume: 0
+    volume: 1
     pitch: 1
     loop: 1
   - soundName: Coin
@@ -82,6 +83,21 @@ MonoBehaviour:
     loop: 0
   - soundName: Jump
     clip: {fileID: 8300000, guid: 7c0f92f642fca1e42b86cac2de1b536e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Gate Open
+    clip: {fileID: 8300000, guid: e163d1851ca0821439e4f8f7d5a7e302, type: 3}
+    volume: 1
+    pitch: 0.8
+    loop: 0
+  - soundName: Gate Close
+    clip: {fileID: 8300000, guid: ea676e6650e5f23499aa35e23702012a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Portal
+    clip: {fileID: 8300000, guid: 98b0d69515de0b94cb2fefd8175bd2d0, type: 3}
     volume: 1
     pitch: 1
     loop: 0

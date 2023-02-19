@@ -34,6 +34,11 @@ public class Sound
         source.Stop();
     }
 
+    public void Mute(bool mute)
+    {
+        source.mute = mute;
+    }
+
     public void ChangeVolume(float newVolume)
     {
         source.volume = newVolume;

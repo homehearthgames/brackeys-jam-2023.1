@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+    public bool isThemePlaying = false;
+
     [SerializeField] private Sound[] sounds;
 
     void Awake()
@@ -30,12 +32,22 @@ public class AudioManager : MonoBehaviour
             sounds[i].SetSource(soundObject.AddComponent<AudioSource>());
             soundObject.transform.parent = gameObject.transform;
         }
+    }
 
-        // Play background music on start
-        // Potentially play 2 tracks of music and change one volume to 0
-
-        PlaySound("UpMusic");
-        PlaySound("DownMusic");
+    public void PlayTheme()
+    {
+        if(isThemePlaying)
+        {
+            Debug.LogWarning("Theme is already playing!");
+        }
+        else
+        {
+            isThemePlaying = true;
+            PlaySound("UpMusic");
+            PlaySound("DownMusic");
+            StopSound("MenuMusic");
+            MuteSound("DownMusic", true);
+        }
     }
 
     public void PlaySound(string name)
@@ -58,6 +70,19 @@ public class AudioManager : MonoBehaviour
             if(sounds[i].soundName == name)
             {
                 sounds[i].Stop();
+                return;
+            }
+        }
+        Debug.LogWarning("AudioManger: Sound not found in list: " + name);
+    }
+
+    public void MuteSound(string name, bool mute)
+    {
+        for(int i = 0; i < sounds.Length; i++)
+        {
+            if(sounds[i].soundName == name)
+            {
+                sounds[i].Mute(mute);
                 return;
             }
         }

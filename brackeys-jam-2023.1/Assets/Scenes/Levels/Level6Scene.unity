@@ -17689,7 +17689,27 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 27
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741826
+  - first: {x: -14, y: 12, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741826
+  - first: {x: -13, y: 12, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -17699,7 +17719,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 7
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -18039,7 +18059,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -18049,7 +18069,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -18719,7 +18739,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 220
     m_Data: {fileID: 11400000, guid: 6b2ca2d030745824e9fe80dbe37c13b5, type: 2}
-  - m_RefCount: 223
+  - m_RefCount: 225
     m_Data: {fileID: 11400000, guid: 090686b2714adeb479381a0700617022, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -18736,17 +18756,17 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 70
+  - m_RefCount: 72
     m_Data: {fileID: -1832315306, guid: 7b76062ccef8cfb41be1ade980441abc, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: -1666169070, guid: 23a217a07240c70468d4f9c76515b037, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 44
     m_Data: {fileID: 21300000, guid: eea14056b9ad4fb4493a4286e9eac68c, type: 3}
-  - m_RefCount: 41
+  - m_RefCount: 43
     m_Data: {fileID: 175972841, guid: 23a217a07240c70468d4f9c76515b037, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -18780,12 +18800,12 @@ Tilemap:
     m_Data: {fileID: 93781098, guid: 5f8029a8823014a43b502613d73823c2, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: -1744770804, guid: 7b76062ccef8cfb41be1ade980441abc, type: 3}
-  - m_RefCount: 6
+  - m_RefCount: 5
     m_Data: {fileID: 96115933, guid: 23a217a07240c70468d4f9c76515b037, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: -652481750, guid: 7b76062ccef8cfb41be1ade980441abc, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 443
+  - m_RefCount: 445
     m_Data:
       e00: 1
       e01: 0
@@ -18804,7 +18824,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 443
+  - m_RefCount: 445
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -18894,14 +18914,6 @@ CompositeCollider2D:
         Y: 40000000
       - X: -150000000
         Y: 120000000
-      - X: -140000000
-        Y: 120000000
-      - X: -140000000
-        Y: 130000000
-      - X: -120000000
-        Y: 130000000
-      - X: -120000000
-        Y: 120000000
       - X: 150000000
         Y: 120000000
       - X: 150000000
@@ -18959,10 +18971,6 @@ CompositeCollider2D:
       - {x: -7.0000296, y: 4}
       - {x: -15, y: 4.0000296}
       - {x: -14.999971, y: 12}
-      - {x: -14, y: 12.00003}
-      - {x: -13.999971, y: 13}
-      - {x: -12, y: 12.99997}
-      - {x: -11.99997, y: 12}
       - {x: 15, y: 11.99997}
       - {x: 15.000029, y: 11}
       - {x: 16, y: 10.99997}

@@ -220,12 +220,12 @@ public class CharacterManager : MonoBehaviour
 
     public void UpdateBodyCountText()
     {
-        bodyCountText.text = string.Format("x {0} / {1}", bodyCount, maxBody);
+        bodyCountText.text = string.Format("{0}/{1}", bodyCount, maxBody);
     }
 
     public void UpdateStarCountText()
     {
-        starCountText.text = string.Format("x {0} / {1}", collectedStars, totalStars);
+        starCountText.text = string.Format("{0}/{1}", collectedStars, totalStars);
     }
 
     public void CollectStar()

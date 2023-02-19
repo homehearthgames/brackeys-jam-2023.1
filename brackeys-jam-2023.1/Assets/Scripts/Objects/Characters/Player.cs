@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
 
     public void GenerateExplodeParticles()
     {
-        ParticleSystem explodeParticles = Instantiate(_explodeParticle, transform.position + (_feetPos * transform.localScale.y), Quaternion.identity);
+        ParticleSystem explodeParticles = Instantiate(_explodeParticle, transform.position, Quaternion.identity);
         ParticleSystem.MainModule settings = explodeParticles.main;
         switch(_status)
         {

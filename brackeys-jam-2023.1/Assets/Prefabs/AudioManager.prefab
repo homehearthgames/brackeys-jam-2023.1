@@ -54,12 +54,12 @@ MonoBehaviour:
     loop: 1
   - soundName: UpMusic
     clip: {fileID: 8300000, guid: af2543d3a9ea08844b23b42e018dfa64, type: 3}
-    volume: 0.8
+    volume: 0.7
     pitch: 1
     loop: 1
   - soundName: DownMusic
     clip: {fileID: 8300000, guid: 9c35ab422ee82274e80d7c5f003cd541, type: 3}
-    volume: 0.8
+    volume: 0.7
     pitch: 1
     loop: 1
   - soundName: Coin
@@ -83,8 +83,8 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - soundName: Jump
-    clip: {fileID: 8300000, guid: 7c0f92f642fca1e42b86cac2de1b536e, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 8b485749d1013314cb3383aae4c7e9ee, type: 3}
+    volume: 0.25
     pitch: 0.8
     loop: 0
   - soundName: Gate Open

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e110a7fdee7d13248a56a0151eebd0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMenuPlaying: 0
   isThemePlaying: 0
   sounds:
   - soundName: MenuMusic
@@ -109,5 +110,10 @@ MonoBehaviour:
   - soundName: Button Release
     clip: {fileID: 8300000, guid: fdafc7b653bb73146a8dd0d163987ff2, type: 3}
     volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Death
+    clip: {fileID: 8300000, guid: b35b04431f014734ab3e47bd4fae9138, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0

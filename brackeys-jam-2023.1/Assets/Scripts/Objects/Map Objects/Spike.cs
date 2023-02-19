@@ -29,6 +29,8 @@ public class Spike : MapObject
             Player player = other.gameObject.GetComponent<Player>();
             if(player._status == Player.PlayerState.me)
             {
+                Camera.instance.StartShake();
+                AudioManager.instance.PlaySound("Death");
                 MeDies();
                 player.transform.position = _respawnPosition.position;
                 if (CanTeleport()){
@@ -42,6 +44,8 @@ public class Spike : MapObject
                 
 
             }else if(player._status == Player.PlayerState.soul){
+                Camera.instance.StartShake();
+                AudioManager.instance.PlaySound("Death");
                 SoulDies();
                 player.transform.position = _respawnPosition.position;
                 if (CanTeleport()){   

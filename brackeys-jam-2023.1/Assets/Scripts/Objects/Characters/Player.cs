@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerController _pc;
 
     [Header("Particle Systems")]
+    [SerializeField] private ParticleSystem _jumpingParticle;
     [SerializeField] private ParticleSystem _landingParticle;
     [SerializeField] private Vector3 _feetPos;
 
@@ -64,9 +65,20 @@ public class Player : MonoBehaviour
         aniamtor.SetTrigger("Switch");
     }
 
+    public void GenerateJumpingParticles()
+    {
+        ParticleSystem jumpingParticle = Instantiate(_jumpingParticle, transform.position + (_feetPos * transform.localScale.y), Quaternion.identity, transform);
+        if(_status == PlayerState.soul)
+        {
+            var sh = jumpingParticle.shape;
+            sh.scale = new Vector3(sh.scale.x, sh.scale.y, sh.scale.z * -1);
+        }
+        jumpingParticle.Play();
+    }
+
     public void GenerateLandingParticles()
     {
-        ParticleSystem landingParticle = Instantiate(_landingParticle, transform.position + (_feetPos * transform.localScale.y), Quaternion.identity);
+        ParticleSystem landingParticle = Instantiate(_landingParticle, transform.position + (_feetPos * transform.localScale.y), Quaternion.identity, transform);
         if(_status == PlayerState.soul)
         {
             var sh = landingParticle.shape;

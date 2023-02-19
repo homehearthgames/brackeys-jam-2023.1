@@ -186,6 +186,7 @@ public class PlayerController : MonoBehaviour
             // Jump
             _rb.velocity = (_player._status == Player.PlayerState.me ? Vector2.up : Vector2.down) * maxJumpForce;
             audioManager.PlaySound("Jump");
+            _player.GenerateJumpingParticles();
 
             desireJump = false;
         }

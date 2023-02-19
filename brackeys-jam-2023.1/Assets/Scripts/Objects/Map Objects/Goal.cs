@@ -25,26 +25,13 @@ public class Goal : MapObject
                 // Level Completed
                 Debug.Log("Level Complete!");
                 // Animation stuffs
-                // "Freeze" player
-                Player player = other.transform.GetComponent<Player>();
-                player._active = false;
                 // Time.timeScale = 0f;
                 // Wait for a second
-                StartCoroutine(LevelCompleteWait(other));
-                
+                Destroy(other.gameObject);
+                // Trigger aniamtion
+                animator.SetTrigger("Close");
             }
         }
-    }
-
-    IEnumerator LevelCompleteWait(Collider2D other)
-    {
-        Debug.Log("Start Wait");
-        yield return new WaitForSeconds(1);
-        Debug.Log("Wait Finish");
-        // Destroy the character touching the portal (entered the portal)
-        Destroy(other.gameObject);
-        // Trigger aniamtion
-        animator.SetTrigger("Close");
     }
 
     public void PortalClosed()

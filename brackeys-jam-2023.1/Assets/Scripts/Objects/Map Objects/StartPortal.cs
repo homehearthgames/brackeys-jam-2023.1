@@ -18,6 +18,7 @@ public class StartPortal : MonoBehaviour
     public void StartPortalOpen()
     {
         CharacterManager.SpawnMe(transform.position);
+        AudioManager.instance.PlaySound("Portal");
         CharacterManager.instance.me._active = true;
     }
 }

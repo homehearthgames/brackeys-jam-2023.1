@@ -42,13 +42,13 @@ public class GateButton : MonoBehaviour
         if(newActive == true)
         {
             _sr.sprite = buttonDown;
-            // audioManager.PlaySound("Button Press");
+            audioManager.PlaySound("Button Press");
             _gate.AnimateOpen();
         }
         else
         {
             _sr.sprite = buttonUp; 
-            // audioManager.PlaySound("Button Release");
+            audioManager.PlaySound("Button Release");
             _gate.AnimateClose();
         }
     }

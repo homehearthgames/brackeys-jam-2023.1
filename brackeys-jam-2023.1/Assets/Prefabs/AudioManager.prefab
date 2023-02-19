@@ -101,3 +101,13 @@ MonoBehaviour:
     volume: 1
     pitch: 0.9
     loop: 0
+  - soundName: Button Press
+    clip: {fileID: 8300000, guid: 59d8c594d3f169b40a6c8392009f51c2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Button Release
+    clip: {fileID: 8300000, guid: fdafc7b653bb73146a8dd0d163987ff2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
